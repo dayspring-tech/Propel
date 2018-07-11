@@ -295,6 +295,7 @@ class GeneratorConfig implements GeneratorConfigInterface
         foreach ($conf->propel->datasources->datasource as $datasource) {
             $buildConnections[(string) $datasource['id']] = array(
                 'adapter'  => (string) $datasource->adapter,
+                'classname'=> (string) $datasource->connection->classname,
                 'dsn'      => (string) $datasource->connection->dsn,
                 'user'     => (string) $datasource->connection->user,
                 'password' => (string) $datasource->connection->password,
@@ -315,6 +316,8 @@ class GeneratorConfig implements GeneratorConfigInterface
             // fallback to the single connection from build.properties
             return array(
                 'adapter'  => $this->getBuildProperty('databaseAdapter'),
+//                todo if needed this should be uncommented and teased out
+//                'classname'=> $this->getBuildProperty('databaseClassname'),
                 'dsn'      => $this->getBuildProperty('databaseUrl'),
                 'user'     => $this->getBuildProperty('databaseUser'),
                 'password' => $this->getBuildProperty('databasePassword'),
