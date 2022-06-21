@@ -111,7 +111,7 @@ class DelegateBehavior extends Behavior
                 $relationName = $builder->getFKPhpNameAffix($fk);
             }
             $script .= "
-if (is_callable(array('$ARFQCN', \$name))) {
+if (method_exists('$ARFQCN', \$name)) {
     if (!\$delegate = \$this->get$relationName()) {
         \$delegate = new $ARClassName();
         \$this->set$relationName(\$delegate);
