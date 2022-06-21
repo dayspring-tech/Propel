@@ -1,4 +1,4 @@
-FROM thecodingmachine/php:7.4-v3-cli
+FROM thecodingmachine/php:8.0-v4-cli
 USER root
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y locales
 
