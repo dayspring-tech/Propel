@@ -92,13 +92,13 @@ class ModelCriteriaTest extends BookstoreTestBase
     /**
      * @dataProvider conditionsForTestReplaceNames
      */
-    public function testReplaceNames($origClause, $columnPhpName = false, $modifiedClause)
+    public function testReplaceNames($origClause, $columnPhpName, $modifiedClause)
     {
         $c = new TestableModelCriteria('bookstore', 'Book');
-        $this->doTestReplaceNames($c, BookPeer::getTableMap(), $origClause, $columnPhpName = false, $modifiedClause);
+        $this->doTestReplaceNames($c, BookPeer::getTableMap(), $origClause, $modifiedClause, $columnPhpName = false);
     }
 
-    public function doTestReplaceNames($c, $tableMap, $origClause, $columnPhpName = false, $modifiedClause)
+    public function doTestReplaceNames($c, $tableMap, $origClause, $modifiedClause, $columnPhpName = false)
     {
         $c->replaceNames($origClause);
         $columns = $c->replacedColumns;
