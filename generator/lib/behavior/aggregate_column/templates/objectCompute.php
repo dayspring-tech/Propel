@@ -1,4 +1,3 @@
-
 /**
  * Computes the value of the aggregate column <?php echo $column->getName() ?>
  *

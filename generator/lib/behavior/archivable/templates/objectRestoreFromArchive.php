@@ -1,4 +1,3 @@
-
 /**
  * Revert the the current object to the state it had when it was last archived.
  * The object must be saved afterwards if the changes must persist.

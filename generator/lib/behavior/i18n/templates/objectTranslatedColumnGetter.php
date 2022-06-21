@@ -1,4 +1,3 @@
-
 <?php echo $comment ?>
 <?php echo $functionStatement ?>
 

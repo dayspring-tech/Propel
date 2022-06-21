@@ -1,4 +1,3 @@
-
 /**
  * Sets the locale for translations.
  * Alias for setLocale(), for BC purpose.

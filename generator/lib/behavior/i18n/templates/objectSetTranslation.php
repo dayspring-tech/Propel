@@ -1,4 +1,3 @@
-
 /**
  * Sets the translation for a given locale
  *

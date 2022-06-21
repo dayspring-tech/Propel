@@ -1,4 +1,3 @@
-
 /**
  * Enable/disable auto-archiving on delete for the next query.
  *

@@ -1,4 +1,3 @@
-
 /**
  * Current locale
  * @var        string

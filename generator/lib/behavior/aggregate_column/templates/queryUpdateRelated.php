@@ -1,4 +1,3 @@
-
 protected function updateRelated<?php echo $relationName ?>s($con)
 {
     foreach ($this-><?php echo $variableName ?>s as $<?php echo $variableName ?>) {

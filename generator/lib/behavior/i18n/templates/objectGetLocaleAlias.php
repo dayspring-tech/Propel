@@ -1,4 +1,3 @@
-
 /**
  * Gets the locale for translations.
  * Alias for getLocale(), for BC purpose.

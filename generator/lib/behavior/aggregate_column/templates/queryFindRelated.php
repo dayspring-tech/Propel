@@ -1,4 +1,3 @@
-
 /**
  * Finds the related <?php echo $foreignTable->getPhpName() ?> objects and keep them for later
  *

@@ -1,4 +1,3 @@
-
 /**
  * Update the aggregate column in the related <?php echo $relationName ?> object
  *

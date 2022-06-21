@@ -1,4 +1,3 @@
-
 /**
  * Enable/disable auto-archiving on update for the next query.
  *

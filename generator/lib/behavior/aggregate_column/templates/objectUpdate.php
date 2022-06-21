@@ -1,4 +1,3 @@
-
 /**
  * Updates the aggregate column <?php echo $column->getName() ?>
  *
