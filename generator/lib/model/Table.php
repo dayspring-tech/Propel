@@ -8,16 +8,15 @@
  * @license    MIT License
  */
 
-require_once dirname(__FILE__) . '/ScopedElement.php';
-require_once dirname(__FILE__) . '/../exception/EngineException.php';
-require_once dirname(__FILE__) . '/IDMethod.php';
-require_once dirname(__FILE__) . '/NameFactory.php';
-require_once dirname(__FILE__) . '/Column.php';
-require_once dirname(__FILE__) . '/Unique.php';
-require_once dirname(__FILE__) . '/ForeignKey.php';
-require_once dirname(__FILE__) . '/IdMethodParameter.php';
-require_once dirname(__FILE__) . '/Validator.php';
-require_once dirname(__FILE__) . '/Behavior.php';
+
+
+
+
+
+
+
+
+
 
 /**
  * Data about a table used in an application.

@@ -8,11 +8,10 @@
  * @license    MIT License
  */
 
-require_once dirname(__FILE__) . '/PropelPlatformInterface.php';
-require_once dirname(__FILE__) . '/../model/Column.php';
-require_once dirname(__FILE__) . '/../model/Table.php';
-require_once dirname(__FILE__) . '/../model/Domain.php';
-require_once dirname(__FILE__) . '/../model/PropelTypes.php';
+
+
+
+
 
 /**
  * Default implementation for the Platform interface.

@@ -8,7 +8,6 @@
  * @license    MIT License
  */
 
-require_once dirname(__FILE__) . '/../DataModelBuilder.php';
 
 /**
  * Baseclass for OM-building classes.

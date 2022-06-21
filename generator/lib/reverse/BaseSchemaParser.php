@@ -8,7 +8,6 @@
  * @license    MIT License
  */
 
-require_once dirname(__FILE__) . '/SchemaParser.php';
 
 /**
  * Base class for reverse engineering a database schema.

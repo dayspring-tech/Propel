@@ -8,7 +8,6 @@
  * @license    MIT License
  */
 
-require_once dirname(__FILE__) . '/PeerBuilder.php';
 
 /**
  * Generates a PHP5 tree node Peer class for user object model (OM).

@@ -8,9 +8,8 @@
  * @license    MIT License
  */
 
-require_once dirname(__FILE__) . '/I18nBehaviorObjectBuilderModifier.php';
-require_once dirname(__FILE__) . '/I18nBehaviorQueryBuilderModifier.php';
-require_once dirname(__FILE__) . '/I18nBehaviorPeerBuilderModifier.php';
+
+
 
 /**
  * Allows translation of text columns through transparent one-to-many relationship

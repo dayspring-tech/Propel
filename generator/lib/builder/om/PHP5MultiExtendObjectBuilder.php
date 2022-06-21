@@ -8,7 +8,6 @@
  * @license    MIT License
  */
 
-require_once dirname(__FILE__) . '/ObjectBuilder.php';
 
 /**
  * Generates the empty PHP5 stub object class for use with inheritance in the user object model (OM).

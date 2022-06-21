@@ -8,7 +8,6 @@
  * @license     MIT License
  */
 
-require_once dirname(__FILE__) . '/../Column.php';
 
 /**
  * Value object for storing Column object diffs.

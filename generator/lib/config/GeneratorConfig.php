@@ -8,9 +8,8 @@
  * @license    MIT License
  */
 
-require_once dirname(__FILE__) . '/GeneratorConfigInterface.php';
 // Phing dependencies
-require_once 'phing/Phing.php';
+
 
 /**
  * A class that holds build properties and provide a class loading mechanism for the generator.

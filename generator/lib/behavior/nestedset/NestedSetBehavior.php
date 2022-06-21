@@ -8,9 +8,8 @@
  * @license    MIT License
  */
 
-require_once dirname(__FILE__) . '/NestedSetBehaviorObjectBuilderModifier.php';
-require_once dirname(__FILE__) . '/NestedSetBehaviorQueryBuilderModifier.php';
-require_once dirname(__FILE__) . '/NestedSetBehaviorPeerBuilderModifier.php';
+
+
 
 /**
  * Behavior to adds nested set tree structure columns and abilities

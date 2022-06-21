@@ -8,8 +8,7 @@
  * @license    MIT License
  */
 
-require_once dirname(__FILE__) . '/../config/GeneratorConfigInterface.php';
-require_once dirname(__FILE__) . '/../util/PropelSQLParser.php';
+
 
 /**
  * Service class for managing SQL.

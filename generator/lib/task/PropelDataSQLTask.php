@@ -8,10 +8,9 @@
  * @license    MIT License
  */
 
-require_once 'model/AppData.php';
-require_once 'model/Database.php';
-require_once 'builder/util/XmlToAppData.php';
-require_once 'builder/util/XmlToDataSQL.php';
+
+
+
 
 /**
  * Task that transforms XML datadump files into files containing SQL INSERT statements.

@@ -8,7 +8,6 @@
  * @license    MIT License
  */
 
-require_once 'phing/BuildException.php';
 
 /**
  * The base class of all exceptions thrown by the engine.

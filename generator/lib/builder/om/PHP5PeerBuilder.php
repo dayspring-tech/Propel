@@ -8,8 +8,7 @@
  * @license    MIT License
  */
 
-require_once dirname(__FILE__) . '/PeerBuilder.php';
-require_once dirname(__FILE__) . '/ClassTools.php';
+
 
 /**
  * Generates a PHP5 base Peer class for user object model (OM).

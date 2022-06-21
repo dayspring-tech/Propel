@@ -8,7 +8,6 @@
  * @license    MIT License
  */
 
-require_once dirname(__FILE__) . '/Pluralizer.php';
 
 /**
  * Standard replacement English pluralizer class. Based on the links below

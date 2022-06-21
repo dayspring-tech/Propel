@@ -8,7 +8,6 @@
  * @license    MIT License
  */
 
-require_once dirname(__FILE__) . '/PeerBuilder.php';
 
 /**
  * Generates the empty PHP5 stub peer class for user object model (OM).

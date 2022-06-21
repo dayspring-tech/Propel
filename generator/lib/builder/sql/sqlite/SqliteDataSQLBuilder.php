@@ -8,7 +8,6 @@
  * @license    MIT License
  */
 
-require_once 'builder/sql/DataSQLBuilder.php';
 
 /**
  * SQLite class for building data dump SQL.

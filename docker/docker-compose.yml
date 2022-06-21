@@ -9,9 +9,12 @@ services:
     volumes:
       - ../:/usr/src/app
     environment:
-      - PHP_EXTENSIONS=intl pdo_sqlite sqlite3
+      - PHP_EXTENSIONS=intl pdo_sqlite sqlite3 xdebug
       - STARTUP_COMMAND_1=composer install
       - STARTUP_COMMAND_2=bash test/reset_tests.sh
+      - PHP_IDE_CONFIG="serverName=propel"
+      - XDEBUG_MODE=debug
+      - XDEBUG_SESSION=1
 
   db:
     image: percona

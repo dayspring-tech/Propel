@@ -8,7 +8,6 @@
  * @license    MIT License
  */
 
-require_once 'builder/sql/DataSQLBuilder.php';
 
 /**
  * MySQL class for building data dump SQL.

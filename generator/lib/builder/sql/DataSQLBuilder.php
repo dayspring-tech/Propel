@@ -8,8 +8,7 @@
  * @license    MIT License
  */
 
-require_once 'builder/DataModelBuilder.php';
-require_once 'model/PropelTypes.php';
+
 
 /**
  * Baseclass for SQL data dump SQL building classes.

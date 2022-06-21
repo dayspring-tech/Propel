@@ -8,12 +8,11 @@
  * @license     MIT License
  */
 
-require_once dirname(__FILE__) . '/../Table.php';
-require_once dirname(__FILE__) . '/PropelTableDiff.php';
-require_once dirname(__FILE__) . '/PropelColumnComparator.php';
-require_once dirname(__FILE__) . '/PropelColumnDiff.php';
-require_once dirname(__FILE__) . '/PropelIndexComparator.php';
-require_once dirname(__FILE__) . '/PropelForeignKeyComparator.php';
+
+
+
+
+
 
 /**
  * Service class for comparing Table objects
