@@ -6,8 +6,8 @@ on:
 jobs:
     test:
         env:
-            DB=mysql
-            DB_USER=root
+            DB: mysql
+            DB_USER: root
         runs-on: ubuntu-18.04
         strategy:
             fail-fast: false
