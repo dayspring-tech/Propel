@@ -1,0 +1,81 @@
+name: test
+
+on:
+    push:
+
+jobs:
+    test:
+        env:
+            DB: mysql
+            DB_USER: root
+        runs-on: ubuntu-18.04
+        strategy:
+            fail-fast: false
+            matrix:
+                php:
+                    - '5.6'
+                    - '7.2'
+                    - '7.3'
+                    - '7.4'
+#                    - '8.0'
+#                    - '8.1'
+                composer:
+                    - ''
+                    - '--prefer-lowest'
+
+        steps:
+            - uses: actions/checkout@v2
+
+            - name: Use PHP
+              uses: shivammathur/setup-php@v2
+              with:
+                  php-version: ${{ matrix.php }}
+                  extensions: sqlite3, zip
+                  coverage: xdebug
+                  tools: composer:v1
+
+            - name: Get Composer Cache Directory
+              id: composer-cache
+              run: |
+                  echo "::set-output name=dir::$(composer config cache-dir)"
+              working-directory: ./
+
+            - name: cache dependencies
+              id: cache-dependencies
+              uses: actions/cache@v1
+              with:
+                  path: ${{ steps.composer-cache.outputs.dir }}
+                  key: ${{ runner.os }}-${{ matrix.php }}-${{ matrix.composer }}-composer-${{ hashFiles('**/composer.lock') }}
+                  restore-keys: |
+                      ${{ runner.os }}-${{ matrix.php }}-${{ matrix.composer }}-composer-
+
+            - name: Validate composer.json and composer.lock
+              run: composer validate
+              working-directory: ./
+
+            - name: Install dependencies
+              env:
+                  COMPOSER_AUTH: ${{ secrets.COMPOSER_AUTH }}
+                  COMPOSER_FLAGS: ${{ matrix.composer }}
+              run: composer update ${COMPOSER_FLAGS} --prefer-source
+              working-directory: ./
+
+            - name: Start MySQL
+              run: |
+                  sudo systemctl start mysql
+                  mysql_tzinfo_to_sql /usr/share/zoneinfo | mysql -u root -proot mysql
+
+            - name: Disable MySQL strict mode
+              run: |
+                  echo "SET GLOBAL sql_mode = ''" | mysql -u root -proot mysql              
+
+            - name: setup database
+              run: |
+                  sh -c "if [ '$DB' = 'mysql' ]; then mysql -u root -proot mysql -e 'SET FOREIGN_KEY_CHECKS = 0; DROP DATABASE IF EXISTS test; DROP SCHEMA IF EXISTS second_hand_books; DROP SCHEMA IF EXISTS contest; DROP DATABASE IF EXISTS reverse_bookstore; DROP SCHEMA IF EXISTS bookstore_schemas; SET FOREIGN_KEY_CHECKS = 1;'; fi"
+                  sh -c "if [ '$DB' = 'mysql' ]; then mysql -u root -proot mysql -e 'CREATE DATABASE test; CREATE SCHEMA bookstore_schemas; CREATE SCHEMA contest; CREATE SCHEMA second_hand_books; CREATE DATABASE reverse_bookstore;'; fi"
+                  ./test/reset_tests.sh
+              working-directory: ./
+        
+            - name: Run Tests
+              run: vendor/bin/phpunit
+              working-directory: ./
