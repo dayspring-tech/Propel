@@ -55,7 +55,7 @@ jobs:
               env:
                   COMPOSER_AUTH: ${{ secrets.COMPOSER_AUTH }}
                   COMPOSER_FLAGS: ${{ matrix.composer }}
-              run: composer install ${COMPOSER_FLAGS} --prefer-source
+              run: composer update ${COMPOSER_FLAGS} --prefer-source
               working-directory: ./
 
             - name: Start MySQL
