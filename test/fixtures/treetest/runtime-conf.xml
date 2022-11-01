@@ -45,7 +45,7 @@
 					<phptype>sqlite</phptype>
 					<dsn>sqlite:/var/tmp/treetest.db</dsn>
 					<username></username>
-					<password></password>
+					<password>root</password>
 				</connection>
 			</datasource>
 		</datasources>
