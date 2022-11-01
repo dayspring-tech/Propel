@@ -13,10 +13,12 @@ jobs:
             fail-fast: false
             matrix:
                 php:
+                    - '5.6'
+                    - '7.2'
                     - '7.3'
                     - '7.4'
-                    - '8.0'
-                    - '8.1'
+#                    - '8.0'
+#                    - '8.1'
                 composer:
                     - ''
                     - '--prefer-lowest'
@@ -62,6 +64,10 @@ jobs:
               run: |
                   sudo systemctl start mysql
                   mysql_tzinfo_to_sql /usr/share/zoneinfo | mysql -u root -proot mysql
+
+            - name: Disable MySQL strict mode
+              run: |
+                  echo "SET GLOBAL sql_mode = ''" | mysql -u root -proot mysql              
 
             - name: setup database
               run: |
