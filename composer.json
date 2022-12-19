@@ -1,5 +1,5 @@
 {
-  "name": "propel/propel1",
+  "name": "dayspring-tech/propel1",
   "description": "Propel is an open-source Object-Relational Mapping (ORM) for PHP5.",
   "keywords": ["orm", "active record", "mapping", "database", "persistence"],
   "homepage": "http://www.propelorm.org/",
@@ -25,10 +25,8 @@
     "ext-simplexml": "*",
     "ext-dom": "*"
   },
-  "extra": {
-    "branch-alias": {
-      "dev-master": "1.7-dev"
-    }
+  "replace": {
+    "propel/propel1": "^1.8"
   },
   "bin": ["generator/bin/propel-gen", "generator/bin/propel-gen.bat"],
   "scripts": {
