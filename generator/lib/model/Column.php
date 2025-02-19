@@ -512,6 +512,19 @@ class Column extends XMLElement
         return $this->getPhpNative();
     }
 
+    public function getPhpReturnType()
+    {
+        $type = $this->getPhpNative();
+        if ($this->phpType !== null) {
+            $type = $this->phpType;
+        }
+
+        if ($type === 'boolean') {
+            return 'bool';
+        }
+        return $type;
+    }
+
     /**
      * Get the location of this column within the table (one-based).
      *
