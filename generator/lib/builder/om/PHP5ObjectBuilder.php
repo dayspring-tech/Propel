@@ -1281,7 +1281,12 @@ abstract class " . $this->getClassname() . " extends " . $parentClass . " ";
         if ($col->isLazyLoad()) {
             $script .= "PropelPDO \$con = null";
         }
-        $script .= "): " . $col->getPhpReturnType() . "
+
+        $returnType = $col->getPhpReturnType();
+        if (!$col->isNotNull() || $col->isAutoIncrement()) {
+            $returnType = "?".$returnType;
+        }
+        $script .= "): " . $returnType . "
     {";
     }
 
