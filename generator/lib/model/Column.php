@@ -519,10 +519,18 @@ class Column extends XMLElement
             $type = $this->phpType;
         }
 
-        if ($type === 'boolean') {
-            return 'bool';
+        switch ($this->getType()) {
+            case PropelTypes::ENUM:
+                return 'string';
+            case PropelTypes::BOOLEAN:
+                return 'bool';
+            case PropelTypes::DOUBLE:
+            case PropelTypes::FLOAT:
+            case PropelTypes::REAL:
+                return 'float';
+            default:
+                return $type;
         }
-        return $type;
     }
 
     /**

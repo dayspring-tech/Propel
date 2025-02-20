@@ -53,7 +53,7 @@ EOF;
         $page = new ArchivableConcretePage();
         $page->fromArray(array(
             'Content'   => 'Test content',
-            'Paragraph' => 'Test',
+            'Paragraph' => 1,
         ));
         $page->save();
         $page->archive();

@@ -1284,10 +1284,14 @@ abstract class " . $this->getClassname() . " extends " . $parentClass . " ";
         }
 
         $returnType = $col->getPhpReturnType();
-        if (!$col->isNotNull() || $col->isAutoIncrement()) {
-            $returnType = "?".$returnType;
+        if ($returnType !== '') {
+            if (!$col->isNotNull() || $col->isAutoIncrement() || $col->isPrimaryKey()) {
+                $returnType = "?".$returnType;
+            }
+
+            $returnType = ": ".$returnType;
         }
-        $script .= "): " . $returnType . "
+        $script .= ") " . $returnType . "
     {";
     }
 
