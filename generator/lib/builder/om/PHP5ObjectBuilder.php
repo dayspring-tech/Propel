@@ -1283,13 +1283,10 @@ abstract class " . $this->getClassname() . " extends " . $parentClass . " ";
             $script .= "PropelPDO \$con = null";
         }
 
-        $returnType = $col->getPhpReturnType();
+        $returnType = $col->getPhpReturnType($this->getPlatform());
         if ($returnType !== '') {
-            if (!$col->isNotNull() || $col->isAutoIncrement() || $col->isPrimaryKey()) {
-                $returnType = "?".$returnType;
-            }
-
-            $returnType = ": ".$returnType;
+            // all getters potentially return null if a value hasn't been set
+            $returnType = ": ?" . $returnType;
         }
         $script .= ") " . $returnType . "
     {";

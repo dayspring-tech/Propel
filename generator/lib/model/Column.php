@@ -512,15 +512,20 @@ class Column extends XMLElement
         return $this->getPhpNative();
     }
 
-    public function getPhpReturnType()
+    public function getPhpReturnType(PropelPlatformInterface $platform)
     {
         $type = $this->getPhpNative();
         if ($this->phpType !== null) {
             $type = $this->phpType;
         }
 
+        if ($this->isLobType() && !$platform->hasStreamBlobImpl()) {
+            return '';
+        }
+
         switch ($this->getType()) {
             case PropelTypes::ENUM:
+            case PropelTypes::CLOB_EMU:
                 return 'string';
             case PropelTypes::BOOLEAN:
                 return 'bool';
