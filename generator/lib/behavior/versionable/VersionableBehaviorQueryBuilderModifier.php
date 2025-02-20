@@ -29,7 +29,7 @@ class VersionableBehaviorQueryBuilderModifier
         return $this->behavior->getParameter($key);
     }
 
-    protected function getColumnAttribute($name = 'version_column')
+    protected function getColumnAttribute($name = 'version_column'): string
     {
         return strtolower($this->behavior->getColumnForParameter($name)->getName());
     }
@@ -59,7 +59,7 @@ class VersionableBehaviorQueryBuilderModifier
      *
      * @return string The related getter, e.g. 'getVersion'
      */
-    protected function getColumnGetter($name = 'version_column')
+    protected function getColumnGetter($name = 'version_column'): string
     {
         return 'get' . $this->getColumnPhpName($name);
     }
@@ -71,7 +71,7 @@ class VersionableBehaviorQueryBuilderModifier
      *
      * @return string The related setter, e.g. 'setVersion'
      */
-    protected function getColumnSetter($name = 'version_column')
+    protected function getColumnSetter($name = 'version_column'): string
     {
         return 'set' . $this->getColumnPhpName($name);
     }

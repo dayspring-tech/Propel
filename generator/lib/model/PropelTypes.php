@@ -284,7 +284,7 @@ class PropelTypes
      *
      * @return string[]
      */
-    public static function getPropelTypes()
+    public static function getPropelTypes(): array
     {
         return array_keys(self::$propelTypeToCreoleTypeMap);
     }
@@ -296,7 +296,7 @@ class PropelTypes
      *
      * @return boolean
      */
-    public static function isTemporalType($type)
+    public static function isTemporalType($type): bool
     {
         return in_array($type, self::$TEMPORAL_TYPES);
     }
@@ -308,7 +308,7 @@ class PropelTypes
      *
      * @return boolean True if values for the type need to be quoted.
      */
-    public static function isTextType($type)
+    public static function isTextType($type): bool
     {
         return in_array($type, self::$TEXT_TYPES);
     }
@@ -320,7 +320,7 @@ class PropelTypes
      *
      * @return boolean True if values for the type need to be quoted.
      */
-    public static function isNumericType($type)
+    public static function isNumericType($type): bool
     {
         return in_array($type, self::$NUMERIC_TYPES);
     }
@@ -332,7 +332,7 @@ class PropelTypes
      *
      * @return boolean True if values for the type need to be quoted.
      */
-    public static function isBooleanType($type)
+    public static function isBooleanType($type): bool
     {
         return in_array($type, self::$BOOLEAN_TYPES);
     }
@@ -344,7 +344,7 @@ class PropelTypes
      *
      * @return boolean
      */
-    public static function isLobType($type)
+    public static function isLobType($type): bool
     {
         return in_array($type, self::$LOB_TYPES);
     }
@@ -356,7 +356,7 @@ class PropelTypes
      *
      * @return boolean Whether the PHP type is a primitive (string, int, boolean, float)
      */
-    public static function isPhpPrimitiveType($phpType)
+    public static function isPhpPrimitiveType($phpType): bool
     {
         return in_array($phpType, array("boolean", "int", "double", "float", "string"));
     }
@@ -368,7 +368,7 @@ class PropelTypes
      *
      * @return boolean Whether the PHP type is a primitive (string, int, boolean, float)
      */
-    public static function isPhpPrimitiveNumericType($phpType)
+    public static function isPhpPrimitiveNumericType($phpType): bool
     {
         return in_array($phpType, array("boolean", "int", "double", "float"));
     }
@@ -380,7 +380,7 @@ class PropelTypes
      *
      * @return boolean
      */
-    public static function isPhpObjectType($phpType)
+    public static function isPhpObjectType($phpType): bool
     {
         return (!self::isPhpPrimitiveType($phpType) && !in_array($phpType, array("resource", "array")));
     }
@@ -392,8 +392,8 @@ class PropelTypes
      *
      * @return boolean
      */
-    public static function isPhpArrayType($phpType)
+    public static function isPhpArrayType($phpType): bool
     {
-        return strtoupper($phpType) === self::PHP_ARRAY;
+        return strtoupper((string)$phpType) === self::PHP_ARRAY;
     }
 }

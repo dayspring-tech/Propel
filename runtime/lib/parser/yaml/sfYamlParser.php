@@ -227,7 +227,7 @@ class sfYamlParser
    *
    * @return integer The current line indentation
    */
-  protected function getCurrentLineIndentation()
+  protected function getCurrentLineIndentation(): int
   {
     return strlen($this->currentLine) - strlen(ltrim($this->currentLine, ' '));
   }
@@ -237,7 +237,7 @@ class sfYamlParser
    *
    * @return string A YAML string
    */
-  protected function getNextEmbedBlock()
+  protected function getNextEmbedBlock(): string
   {
     $this->moveToNextLine();
 
@@ -280,7 +280,7 @@ class sfYamlParser
   /**
    * Moves the parser to the next line.
    */
-  protected function moveToNextLine()
+  protected function moveToNextLine(): bool
   {
     if ($this->currentLineNb >= count($this->lines) - 1) {
       return false;
@@ -410,7 +410,7 @@ class sfYamlParser
    *
    * @return Boolean Returns true if the next line is indented, false otherwise
    */
-  protected function isNextLineIndented()
+  protected function isNextLineIndented(): bool
   {
     $currentIndentation = $this->getCurrentLineIndentation();
     $notEOF = $this->moveToNextLine();
@@ -438,7 +438,7 @@ class sfYamlParser
    *
    * @return Boolean Returns true if the current line is empty or if it is a comment line, false otherwise
    */
-  protected function isCurrentLineEmpty()
+  protected function isCurrentLineEmpty(): bool
   {
     return $this->isCurrentLineBlank() || $this->isCurrentLineComment();
   }
@@ -448,7 +448,7 @@ class sfYamlParser
    *
    * @return Boolean Returns true if the current line is blank, false otherwise
    */
-  protected function isCurrentLineBlank()
+  protected function isCurrentLineBlank(): bool
   {
     return '' == trim($this->currentLine, ' ');
   }
@@ -458,7 +458,7 @@ class sfYamlParser
    *
    * @return Boolean Returns true if the current line is a comment line, false otherwise
    */
-  protected function isCurrentLineComment()
+  protected function isCurrentLineComment(): bool
   {
     //checking explicitly the first char of the trim is faster than loops or strpos
     $ltrimmedLine = ltrim($this->currentLine, ' ');

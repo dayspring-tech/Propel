@@ -119,7 +119,7 @@ class VendorInfo extends XMLElement
      *
      * @return bool
      */
-    public function hasParameter($name)
+    public function hasParameter($name): bool
     {
         return isset($this->parameters[$name]);
     }
@@ -149,7 +149,7 @@ class VendorInfo extends XMLElement
      *
      * @return boolean
      */
-    public function isEmpty()
+    public function isEmpty(): bool
     {
         return empty($this->parameters);
     }

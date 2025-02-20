@@ -13,7 +13,7 @@ class AddClassBehaviorBuilder extends OMBuilder
      * Returns the name of the current class being built.
      * @return string
      */
-    public function getUnprefixedClassname()
+    public function getUnprefixedClassname(): string
     {
         return $this->getStubObjectBuilder()->getUnprefixedClassname() . 'FooClass';
     }

@@ -180,7 +180,7 @@ class ModelWith
 
     // Utility methods
 
-    public function isPrimary()
+    public function isPrimary(): bool
     {
         return null === $this->leftPhpName;
     }

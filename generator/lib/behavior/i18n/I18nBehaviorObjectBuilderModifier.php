@@ -54,7 +54,7 @@ class I18nBehaviorObjectBuilderModifier
         ));
     }
 
-    public function objectMethods($builder)
+    public function objectMethods($builder): string
     {
         $this->builder = $builder;
         $script = '';

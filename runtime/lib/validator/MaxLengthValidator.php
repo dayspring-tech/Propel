@@ -37,7 +37,7 @@ class MaxLengthValidator implements BasicValidator
      *
      * @return boolean
      */
-    public function isValid(ValidatorMap $map, $str)
+    public function isValid(ValidatorMap $map, $str): bool
     {
         $len = function_exists('mb_strlen') ? mb_strlen($str) : strlen($str);
 

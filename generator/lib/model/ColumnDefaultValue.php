@@ -66,7 +66,7 @@ class ColumnDefaultValue
      *
      * @return boolean Whether value this object holds is an expression.
      */
-    public function isExpression()
+    public function isExpression(): bool
     {
         return ($this->type == self::TYPE_EXPR);
     }
@@ -95,7 +95,7 @@ class ColumnDefaultValue
      * @return boolean Whether this object represents same default value as $other
      * @author     Niklas Närhinen <niklas@narhinen.net>
      */
-    public function equals(ColumnDefaultValue $other)
+    public function equals(ColumnDefaultValue $other): bool
     {
         if ($this->getType() != $other->getType()) {
             return false;

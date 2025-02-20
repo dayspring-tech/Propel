@@ -99,22 +99,22 @@ class MysqlPlatform extends DefaultPlatform
         return $this->defaultTableEngine;
     }
 
-    public function getAutoIncrement()
+    public function getAutoIncrement(): string
     {
         return "AUTO_INCREMENT";
     }
 
-    public function getMaxColumnNameLength()
+    public function getMaxColumnNameLength(): int
     {
         return 64;
     }
 
-    public function supportsNativeDeleteTrigger()
+    public function supportsNativeDeleteTrigger(): bool
     {
         return strtolower($this->getDefaultTableEngine()) == 'innodb';
     }
 
-    public function supportsForeignKeys(Table $table)
+    public function supportsForeignKeys(Table $table): bool
     {
         $vendorSpecific = $table->getVendorInfoForType('mysql');
         if ($vendorSpecific->hasParameter('Type')) {
@@ -128,7 +128,7 @@ class MysqlPlatform extends DefaultPlatform
         return strtolower($mysqlTableType) == 'innodb';
     }
 
-    public function getAddTablesDDL(Database $database)
+    public function getAddTablesDDL(Database $database): string
     {
         $ret = $this->getBeginDDL();
         foreach ($database->getTablesForSql() as $table) {
@@ -141,7 +141,7 @@ class MysqlPlatform extends DefaultPlatform
         return $ret;
     }
 
-    public function getBeginDDL()
+    public function getBeginDDL(): string
     {
         return "
 # This is a fix for InnoDB in MySQL >= 4.1.x
@@ -150,7 +150,7 @@ SET FOREIGN_KEY_CHECKS = 0;
 ";
     }
 
-    public function getEndDDL()
+    public function getEndDDL(): string
     {
         return "
 # This restores the fkey checks, after having unset them earlier
@@ -185,7 +185,7 @@ SET FOREIGN_KEY_CHECKS = 1;
         }
     }
 
-    public function getAddTableDDL(Table $table)
+    public function getAddTableDDL(Table $table): string
     {
         $lines = array();
 
@@ -297,14 +297,14 @@ CREATE TABLE %s
         return $tableOptions;
     }
 
-    public function getDropTableDDL(Table $table)
+    public function getDropTableDDL(Table $table): string
     {
         return "
 DROP TABLE IF EXISTS " . $this->quoteIdentifier($table->getName()) . ";
 ";
     }
 
-    public function getColumnDDL(Column $col)
+    public function getColumnDDL(Column $col): string
     {
         $domain = $col->getDomain();
         $sqlType = $domain->getSqlType();
@@ -384,7 +384,7 @@ DROP TABLE IF EXISTS " . $this->quoteIdentifier($table->getName()) . ";
      *
      * @return string
      */
-    protected function getIndexColumnListDDL(Index $index)
+    protected function getIndexColumnListDDL(Index $index): string
     {
         $list = array();
         foreach ($index->getColumns() as $col) {
@@ -401,7 +401,7 @@ DROP TABLE IF EXISTS " . $this->quoteIdentifier($table->getName()) . ";
      *
      * @return string
      */
-    public function getDropPrimaryKeyDDL(Table $table)
+    public function getDropPrimaryKeyDDL(Table $table): string
     {
         $pattern = "
 ALTER TABLE %s DROP PRIMARY KEY;
@@ -419,7 +419,7 @@ ALTER TABLE %s DROP PRIMARY KEY;
      *
      * @return string
      */
-    public function getAddIndexDDL(Index $index)
+    public function getAddIndexDDL(Index $index): string
     {
         $pattern = "
 CREATE %sINDEX %s ON %s (%s);
@@ -440,7 +440,7 @@ CREATE %sINDEX %s ON %s (%s);
      *
      * @return string
      */
-    public function getDropIndexDDL(Index $index)
+    public function getDropIndexDDL(Index $index): string
     {
         $pattern = "
 DROP INDEX %s ON %s;
@@ -457,7 +457,7 @@ DROP INDEX %s ON %s;
      *
      * @return string
      */
-    public function getIndexDDL(Index $index)
+    public function getIndexDDL(Index $index): string
     {
         return sprintf('%sINDEX %s (%s)',
             $this->getIndexType($index),
@@ -466,7 +466,7 @@ DROP INDEX %s ON %s;
         );
     }
 
-    protected function getIndexType(Index $index)
+    protected function getIndexType(Index $index): string
     {
         $type = '';
         $vendorInfo = $index->getVendorInfoForType($this->getDatabaseType());
@@ -479,7 +479,7 @@ DROP INDEX %s ON %s;
         return $type;
     }
 
-    public function getUniqueDDL(Unique $unique)
+    public function getUniqueDDL(Unique $unique): string
     {
         return sprintf('UNIQUE INDEX %s (%s)',
             $this->quoteIdentifier($unique->getName()),
@@ -525,7 +525,7 @@ ALTER TABLE %s DROP FOREIGN KEY %s;
         );
     }
 
-    public function getCommentBlockDDL($comment)
+    public function getCommentBlockDDL($comment): string
     {
         $pattern = "
 -- ---------------------------------------------------------------------
@@ -542,7 +542,7 @@ ALTER TABLE %s DROP FOREIGN KEY %s;
      *
      * @return string
      */
-    public function getModifyDatabaseDDL(PropelDatabaseDiff $databaseDiff)
+    public function getModifyDatabaseDDL(PropelDatabaseDiff $databaseDiff): string
     {
         $ret = $this->getBeginDDL();
 
@@ -572,7 +572,7 @@ ALTER TABLE %s DROP FOREIGN KEY %s;
      *
      * @return string
      */
-    public function getRenameTableDDL($fromTableName, $toTableName)
+    public function getRenameTableDDL($fromTableName, $toTableName): string
     {
         $pattern = "
 RENAME TABLE %s TO %s;
@@ -589,7 +589,7 @@ RENAME TABLE %s TO %s;
      *
      * @return string
      */
-    public function getRemoveColumnDDL(Column $column)
+    public function getRemoveColumnDDL(Column $column): string
     {
         $pattern = "
 ALTER TABLE %s DROP %s;
@@ -626,7 +626,7 @@ ALTER TABLE %s DROP %s;
      *
      * @return string
      */
-    public function getChangeColumnDDL($fromColumn, $toColumn)
+    public function getChangeColumnDDL($fromColumn, $toColumn): string
     {
         $pattern = "
 ALTER TABLE %s CHANGE %s %s;
@@ -644,7 +644,7 @@ ALTER TABLE %s CHANGE %s %s;
      *
      * @return string
      */
-    public function getModifyColumnsDDL($columnDiffs)
+    public function getModifyColumnsDDL($columnDiffs): string
     {
         $ret = '';
         foreach ($columnDiffs as $columnDiff) {
@@ -654,7 +654,7 @@ ALTER TABLE %s CHANGE %s %s;
         return $ret;
     }
 
-    public function getAddColumnDDLBits(Column $column)
+    public function getAddColumnDDLBits(Column $column): string
     {
         $pattern = "ADD %s %s";
 
@@ -684,7 +684,7 @@ ALTER TABLE %s CHANGE %s %s;
      *
      * @return string
      */
-    public function getAddColumnsDDL($columns)
+    public function getAddColumnsDDL($columns): string
     {
         $lines = array();
         $tableName = null;
@@ -712,12 +712,12 @@ ALTER TABLE %s
     /**
      * @see        Platform::supportsSchemas()
      */
-    public function supportsSchemas()
+    public function supportsSchemas(): bool
     {
         return true;
     }
 
-    public function hasSize($sqlType)
+    public function hasSize($sqlType): bool
     {
         return !("MEDIUMTEXT" == $sqlType || "LONGTEXT" == $sqlType || "BLOB" == $sqlType || "MEDIUMBLOB" == $sqlType || "LONGBLOB" == $sqlType);
     }
@@ -753,7 +753,7 @@ ALTER TABLE %s
         return $this->isIdentifierQuotingEnabled ? '`' . strtr($text, array('.' => '`.`')) . '`' : $text;
     }
 
-    public function getTimestampFormatter()
+    public function getTimestampFormatter(): string
     {
         return 'Y-m-d H:i:s';
     }
@@ -775,12 +775,12 @@ ALTER TABLE %s
         return parent::getColumnBindingPHP($column, $identifier, $columnValueAccessor, $tab);
     }
 
-    public function getDefaultFKOnDeleteBehavior()
+    public function getDefaultFKOnDeleteBehavior(): string
     {
       return ForeignKey::RESTRICT;
     }
 
-    public function getDefaultFKOnUpdateBehavior()
+    public function getDefaultFKOnUpdateBehavior(): string
     {
       return ForeignKey::RESTRICT;
     }

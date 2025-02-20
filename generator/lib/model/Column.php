@@ -115,7 +115,7 @@ class Column extends XMLElement
      *
      * @return string
      */
-    public static function makeList($columns, PropelPlatformInterface $platform)
+    public static function makeList($columns, PropelPlatformInterface $platform): string
     {
         $list = array();
         foreach ($columns as $col) {
@@ -140,7 +140,7 @@ class Column extends XMLElement
             if ($dom) {
                 $this->getDomain()->copy($this->getTable()->getDatabase()->getDomain($dom));
             } else {
-                $type = strtoupper($this->getAttribute("type"));
+                $type = strtoupper((string)$this->getAttribute("type"));
                 if ($type) {
                     if ($platform = $this->getPlatform()) {
                         $this->getDomain()->copy($this->getPlatform()->getDomainForType($type));
@@ -290,7 +290,7 @@ class Column extends XMLElement
     /**
      * Returns table.column
      */
-    public function getFullyQualifiedName()
+    public function getFullyQualifiedName(): string
     {
         return ($this->parentTable->getName() . '.' . $this->getName());
     }
@@ -314,7 +314,7 @@ class Column extends XMLElement
     /**
      * Determines whether a column name is plural
      */
-    public function isNamePlural()
+    public function isNamePlural(): bool
     {
         return $this->getSingularName() != $this->name;
     }
@@ -322,7 +322,7 @@ class Column extends XMLElement
     /**
      * Gets the singular name for the column
      */
-    public function getSingularName()
+    public function getSingularName(): string
     {
         return rtrim($this->name, 's');
     }
@@ -385,7 +385,7 @@ class Column extends XMLElement
      *
      * @return string
      */
-    public function getStudlyPhpName()
+    public function getStudlyPhpName(): string
     {
         $phpname = $this->getPhpName();
         if (strlen($phpname) > 1) {
@@ -457,7 +457,7 @@ class Column extends XMLElement
      *
      * @return string A column constant name for insertion into PHP code
      */
-    public function getConstantName()
+    public function getConstantName(): string
     {
         $classname = $this->getTable()->getPhpName() . 'Peer';
         $const = $this->getConstantColumnName();
@@ -465,7 +465,7 @@ class Column extends XMLElement
         return $classname . '::' . $const;
     }
 
-    public function getConstantColumnName()
+    public function getConstantColumnName(): string
     {
         // was it overridden in schema.xml ?
         if ($this->getPeerName()) {
@@ -803,7 +803,7 @@ class Column extends XMLElement
      *
      * @return boolean
      */
-    public function isForeignKey()
+    public function isForeignKey(): bool
     {
         return (count($this->getForeignKeys()) > 0);
     }
@@ -813,7 +813,7 @@ class Column extends XMLElement
      *
      * @return boolean
      */
-    public function hasMultipleFK()
+    public function hasMultipleFK(): bool
     {
         return (count($this->getForeignKeys()) > 1);
     }
@@ -851,12 +851,12 @@ class Column extends XMLElement
         return $this->referrers;
     }
 
-    public function hasReferrers()
+    public function hasReferrers(): bool
     {
         return $this->referrers !== null;
     }
 
-    public function hasReferrer(ForeignKey $fk)
+    public function hasReferrer(ForeignKey $fk): bool
     {
         return $this->hasReferrers() && in_array($fk, $this->referrers, true);
     }
@@ -928,7 +928,7 @@ class Column extends XMLElement
         return $this->getType();
     }
 
-    public function isDefaultSqlType(PropelPlatformInterface $platform = null)
+    public function isDefaultSqlType(PropelPlatformInterface $platform = null): bool
     {
         if (null === $this->domain || null === $this->domain->getSqlType() || null === $platform) {
             return true;
@@ -1004,7 +1004,7 @@ class Column extends XMLElement
      *
      * @return boolean
      */
-    public function isEnumType()
+    public function isEnumType(): bool
     {
         return $this->getType() == PropelTypes::ENUM;
     }
@@ -1363,7 +1363,7 @@ class Column extends XMLElement
         return $this->getTable()->getDatabase()->getPlatform();
     }
 
-    public function hasPlatform()
+    public function hasPlatform(): bool
     {
         return null !== $this->getTable() && null !== $this->getTable()->getDatabase() && null !== $this->getTable()->getDatabase()->getPlatform();
     }

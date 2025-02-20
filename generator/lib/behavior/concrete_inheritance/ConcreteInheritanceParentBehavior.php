@@ -36,7 +36,7 @@ class ConcreteInheritanceParentBehavior extends Behavior
         }
     }
 
-    protected function getColumnGetter()
+    protected function getColumnGetter(): string
     {
         return 'get' . $this->getColumnForParameter('descendant_column')->getPhpName();
     }

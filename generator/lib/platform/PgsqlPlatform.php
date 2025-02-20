@@ -45,17 +45,17 @@ class PgsqlPlatform extends DefaultPlatform
         $this->setSchemaDomainMapping(new Domain(PropelTypes::ENUM, "INT2"));
     }
 
-    public function getNativeIdMethod()
+    public function getNativeIdMethod(): string
     {
         return PropelPlatformInterface::SERIAL;
     }
 
-    public function getAutoIncrement()
+    public function getAutoIncrement(): string
     {
         return '';
     }
 
-    public function getMaxColumnNameLength()
+    public function getMaxColumnNameLength(): int
     {
         return 32;
     }
@@ -76,7 +76,7 @@ class PgsqlPlatform extends DefaultPlatform
         }
     }
 
-    public function getBooleanString($b)
+    public function getBooleanString($b): string
     {
         // parent method does the checking to allow string
         // representations & returns integer
@@ -85,7 +85,7 @@ class PgsqlPlatform extends DefaultPlatform
         return ($b ? "'t'" : "'f'");
     }
 
-    public function supportsNativeDeleteTrigger()
+    public function supportsNativeDeleteTrigger(): bool
     {
         return true;
     }
@@ -148,7 +148,7 @@ DROP SEQUENCE %s;
         }
     }
 
-    public function getAddSchemasDDL(Database $database)
+    public function getAddSchemasDDL(Database $database): string
     {
         $ret = '';
         $schemas = array();
@@ -197,7 +197,7 @@ SET search_path TO public;
         }
     }
 
-    public function getAddTablesDDL(Database $database)
+    public function getAddTablesDDL(Database $database): string
     {
         $ret = $this->getBeginDDL();
         $ret .= $this->getAddSchemasDDL($database);
@@ -215,7 +215,7 @@ SET search_path TO public;
         return $ret;
     }
 
-    public function getAddTableDDL(Table $table)
+    public function getAddTableDDL(Table $table): string
     {
         $ret = '';
         $ret .= $this->getUseSchemaDDL($table);
@@ -264,7 +264,7 @@ COMMENT ON TABLE %s IS %s;
         return $ret;
     }
 
-    protected function getAddColumnsComments(Table $table)
+    protected function getAddColumnsComments(Table $table): string
     {
         $ret = '';
         foreach ($table->getColumns() as $column) {
@@ -288,7 +288,7 @@ COMMENT ON COLUMN %s.%s IS %s;
         }
     }
 
-    public function getDropTableDDL(Table $table)
+    public function getDropTableDDL(Table $table): string
     {
         $ret = '';
         $ret .= $this->getUseSchemaDDL($table);
@@ -302,14 +302,14 @@ DROP TABLE IF EXISTS %s CASCADE;
         return $ret;
     }
 
-    public function getPrimaryKeyName(Table $table)
+    public function getPrimaryKeyName(Table $table): string
     {
         $tableName = $table->getName();
 
         return $tableName . '_pkey';
     }
 
-    public function getColumnDDL(Column $col)
+    public function getColumnDDL(Column $col): string
     {
         $domain = $col->getDomain();
 
@@ -337,7 +337,7 @@ DROP TABLE IF EXISTS %s CASCADE;
         return implode(' ', $ddl);
     }
 
-    public function getUniqueDDL(Unique $unique)
+    public function getUniqueDDL(Unique $unique): string
     {
         return sprintf('CONSTRAINT %s UNIQUE (%s)',
             $this->quoteIdentifier($unique->getName()),
@@ -348,22 +348,22 @@ DROP TABLE IF EXISTS %s CASCADE;
     /**
      * @see        Platform::supportsSchemas()
      */
-    public function supportsSchemas()
+    public function supportsSchemas(): bool
     {
         return true;
     }
 
-    public function hasSize($sqlType)
+    public function hasSize($sqlType): bool
     {
         return !("BYTEA" == $sqlType || "TEXT" == $sqlType || "DOUBLE PRECISION" == $sqlType);
     }
 
-    public function hasStreamBlobImpl()
+    public function hasStreamBlobImpl(): bool
     {
         return true;
     }
 
-    public function supportsVarcharWithoutSize()
+    public function supportsVarcharWithoutSize(): bool
     {
         return true;
     }
@@ -375,7 +375,7 @@ DROP TABLE IF EXISTS %s CASCADE;
      * @return string
      * @see        DefaultPlatform::getModifyColumnDDL
      */
-    public function getModifyColumnDDL(PropelColumnDiff $columnDiff)
+    public function getModifyColumnDDL(PropelColumnDiff $columnDiff): string
     {
         $ret = '';
         $changedProperties = $columnDiff->getChangedProperties();
@@ -432,7 +432,7 @@ ALTER TABLE %s ALTER COLUMN %s;
      * @return string
      * @see        DefaultPlatform::getModifyColumnsDDL
      */
-    public function getModifyColumnsDDL($columnDiffs)
+    public function getModifyColumnsDDL($columnDiffs): string
     {
         $ret = '';
         foreach ($columnDiffs as $columnDiff) {
@@ -449,7 +449,7 @@ ALTER TABLE %s ALTER COLUMN %s;
      * @return string
      * @see        DefaultPlatform::getAddColumnsDLL
      */
-    public function getAddColumnsDDL($columns)
+    public function getAddColumnsDDL($columns): string
     {
         $ret = '';
         foreach ($columns as $column) {
@@ -487,7 +487,7 @@ ALTER TABLE %s ALTER COLUMN %s;
      * Warning: duplicates logic from DBPostgres::getId().
      * Any code modification here must be ported there.
      */
-    public function getIdentifierPhp($columnValueMutator, $connectionVariableName = '$con', $sequenceName = '', $tab = "			")
+    public function getIdentifierPhp($columnValueMutator, $connectionVariableName = '$con', $sequenceName = '', $tab = "			"): ?string
     {
         if (!$sequenceName) {
             throw new EngineException('PostgreSQL needs a sequence name to fetch primary keys');

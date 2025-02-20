@@ -54,7 +54,7 @@ class PropelSimpleArrayFormatter extends PropelFormatter
         return $result;
     }
 
-    public function isObjectFormatter()
+    public function isObjectFormatter(): bool
     {
         return false;
     }

@@ -23,7 +23,7 @@ class QueryCacheBehavior extends Behavior
         'lifetime'    => 3600,
     );
 
-    public function queryAttributes($builder)
+    public function queryAttributes($builder): string
     {
         $script = "protected \$queryKey = '';
 ";

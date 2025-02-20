@@ -209,7 +209,7 @@ class RelationMap
      *
      * @return boolean
      */
-    public function isComposite()
+    public function isComposite(): bool
     {
         return $this->countColumnMappings() > 1;
     }
@@ -219,7 +219,7 @@ class RelationMap
      *
      * @return int
      */
-    public function countColumnMappings()
+    public function countColumnMappings(): int
     {
         return count($this->localColumns);
     }

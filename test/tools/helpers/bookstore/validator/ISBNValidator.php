@@ -22,8 +22,8 @@ class ISBNValidator implements BasicValidator
     /**
      * Whether the passed string matches regular expression.
      */
-    public function isValid(ValidatorMap $map, $str)
+    public function isValid(ValidatorMap $map, $str): bool
     {
-        return !(preg_match(self::NOT_ISBN_REGEXP, $str));
+        return !(preg_match(self::NOT_ISBN_REGEXP, (string)$str));
     }
 }

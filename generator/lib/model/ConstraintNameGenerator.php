@@ -35,7 +35,7 @@ class ConstraintNameGenerator implements NameGenerator
      * @see        NameGenerator
      * @throws EngineException
      */
-    public function generateName($inputs)
+    public function generateName($inputs): string
     {
         /* @var $db Database */
         $db = $inputs[0];

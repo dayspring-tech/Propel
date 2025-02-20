@@ -78,6 +78,10 @@ XML;
 
     protected function assertEmptyBuilderOutput($schema)
     {
+        // disable E_DEPRECATED for this test
+        $error_level = error_reporting();
+        error_reporting($error_level ^ E_DEPRECATED);
+
         $builder = new PropelQuickBuilder();
         $builder->setSchema($schema);
 
@@ -86,5 +90,8 @@ XML;
         $output = preg_replace('/[\r\n]/', '', ob_get_contents());
         ob_end_clean();
         $this->assertEquals('', $output);
+
+        // set error level back to previous value
+        error_reporting($error_level);
     }
 }

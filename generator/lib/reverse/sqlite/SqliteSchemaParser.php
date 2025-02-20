@@ -72,7 +72,7 @@ class SqliteSchemaParser extends BaseSchemaParser
     /**
      *
      */
-    public function parse(Database $database, Task $task = null)
+    public function parse(Database $database, Task $task = null): int
     {
         $stmt = $this->dbh->query("SELECT name FROM sqlite_master WHERE type='table' UNION ALL SELECT name FROM sqlite_temp_master WHERE type='table' ORDER BY name;");
 

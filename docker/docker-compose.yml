@@ -5,19 +5,12 @@ services:
       context: .
       dockerfile: Dockerfile
     working_dir: /usr/src/app
-    command: phpunit
+    command: composer update && bash test/reset_tests.sh && vendor/bin/phpunit
     volumes:
       - ../:/usr/src/app
-    environment:
-      - PHP_EXTENSIONS=intl pdo_sqlite sqlite3 xdebug
-      - STARTUP_COMMAND_1=composer install
-      - STARTUP_COMMAND_2=bash test/reset_tests.sh
-      - PHP_IDE_CONFIG="serverName=propel"
-      - XDEBUG_MODE=debug
-      - XDEBUG_SESSION=1
 
   db:
-    image: percona
+    image: mysql:8.0
     command: >
       mysqld
       --sql-mode="NO_ENGINE_SUBSTITUTION"
@@ -26,4 +19,10 @@ services:
       --default-authentication-plugin=mysql_native_password
     restart: always
     environment:
-      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+#      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: test-dev
+      MYSQL_PASSWORD: test-dev
+      MYSQL_DATABASE: test
+    volumes:
+      - ./mysql/data:/var/lib/mysql

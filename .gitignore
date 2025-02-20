@@ -10,6 +10,6 @@ composer.phar
 generator/pear/build/
 runtime/pear/build/
 
-/docker/
-
 .phpunit.result.cache
+
+docker/mysql/data/

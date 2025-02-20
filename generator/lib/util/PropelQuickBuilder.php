@@ -122,7 +122,7 @@ class PropelQuickBuilder
         return $this->database;
     }
 
-    public function buildSQL(PDO $con)
+    public function buildSQL(PDO $con): int
     {
         $statements = PropelSQLParser::parseString($this->getSQL());
         foreach ($statements as $statement) {
@@ -150,7 +150,7 @@ class PropelQuickBuilder
         eval($this->getClasses($classTargets));
     }
 
-    public function getClasses(array $classTargets = null)
+    public function getClasses(array $classTargets = null): string
     {
         $script = '';
         foreach ($this->getDatabase()->getTables() as $table) {

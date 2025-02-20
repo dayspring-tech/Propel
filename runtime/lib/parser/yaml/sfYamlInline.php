@@ -88,7 +88,7 @@ class sfYamlInline
         return 'true';
       case false === $value:
         return 'false';
-      case ctype_digit($value):
+      case ctype_digit((string)$value):
         return is_string($value) ? "'$value'" : (int) $value;
       case is_numeric($value):
         return is_infinite($value) ? str_ireplace('INF', '.Inf', strval($value)) : (is_string($value) ? "'$value'" : $value);
@@ -118,7 +118,7 @@ class sfYamlInline
    *
    * @return string The YAML string representing the PHP array
    */
-  protected static function dumpArray($value)
+  protected static function dumpArray($value): string
   {
     // array
     $keys = array_keys($value);
@@ -381,7 +381,7 @@ class sfYamlInline
     }
   }
 
-  protected static function getTimestampRegex()
+  protected static function getTimestampRegex(): string
   {
     return <<<EOF
     ~^

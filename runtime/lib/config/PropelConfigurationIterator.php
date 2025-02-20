@@ -12,7 +12,7 @@
  * PropelConfigurationIterator is used internally by PropelConfiguration to
  * build a flat array from nesting configuration arrays.
  *
- * @author     Veikko Mäkinen <veikko@veikko.fi>
+ * @author     Veikko Mï¿½kinen <veikko@veikko.fi>
  * @version    $Revision$
  * @package    propel.runtime.config
  */
@@ -47,7 +47,7 @@ class PropelConfigurationIterator extends RecursiveIteratorIterator
      *
      * @return string
      */
-    public function getNamespace()
+    public function getNamespace(): string
     {
         return implode('.', $this->namespaceStack);
     }
@@ -72,7 +72,7 @@ class PropelConfigurationIterator extends RecursiveIteratorIterator
      * @see       http://www.php.net/RecursiveIteratorIterator
      * @return mixed
      */
-    public function current()
+    public function current(): mixed
     {
         $current = parent::current();
         if (is_array($current)) {
@@ -90,7 +90,7 @@ class PropelConfigurationIterator extends RecursiveIteratorIterator
      *
      * @see       http://www.php.net/RecursiveIteratorIterator
      */
-    public function endChildren()
+    public function endChildren(): void
     {
         if ($this->namespaceStack) {
             array_pop($this->namespaceStack);

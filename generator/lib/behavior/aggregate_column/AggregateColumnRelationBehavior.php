@@ -24,7 +24,7 @@ class AggregateColumnRelationBehavior extends Behavior
         'update_method' => '',
     );
 
-    public function postSave($builder)
+    public function postSave($builder): string
     {
         $relationName = $this->getRelationName($builder);
 
@@ -34,7 +34,7 @@ class AggregateColumnRelationBehavior extends Behavior
     // no need for a postDelete() hook, since delete() uses Query::delete(),
     // which already has a hook
 
-    public function objectAttributes($builder)
+    public function objectAttributes($builder): string
     {
         $relationName = $this->getRelationName($builder);
 
@@ -83,7 +83,7 @@ class AggregateColumnRelationBehavior extends Behavior
         return $this->getFindRelated($builder);
     }
 
-    protected function getFindRelated($builder)
+    protected function getFindRelated($builder): string
     {
         $relationName = $this->getRelationName($builder);
 
@@ -100,14 +100,14 @@ class AggregateColumnRelationBehavior extends Behavior
         return $this->getUpdateRelated($builder);
     }
 
-    protected function getUpdateRelated($builder)
+    protected function getUpdateRelated($builder): string
     {
         $relationName = $this->getRelationName($builder);
 
         return "\$this->updateRelated{$relationName}s(\$con);";
     }
 
-    public function queryMethods($builder)
+    public function queryMethods($builder): string
     {
         $script = '';
         $script .= $this->addQueryFindRelated($builder);

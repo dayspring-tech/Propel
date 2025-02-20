@@ -25,7 +25,7 @@ class I18nBehaviorPeerBuilderModifier
         $this->behavior = $behavior;
     }
 
-    public function staticConstants()
+    public function staticConstants(): string
     {
         return "
 /**

@@ -318,7 +318,7 @@ class Database extends ScopedElement
      *
      * @return integer
      */
-    public function countTables()
+    public function countTables(): int
     {
         $count = 0;
         foreach ($this->tableList as $table) {
@@ -355,7 +355,7 @@ class Database extends ScopedElement
      *
      * @return boolean
      */
-    public function hasTable($name, $caseInsensitive = false)
+    public function hasTable($name, $caseInsensitive = false): bool
     {
         if ($caseInsensitive) {
             return array_key_exists(strtolower($name), $this->tablesByLowercaseName);
@@ -392,7 +392,7 @@ class Database extends ScopedElement
      *
      * @return boolean
      */
-    public function hasTableByPhpName($phpName)
+    public function hasTableByPhpName($phpName): bool
     {
         return array_key_exists($phpName, $this->tablesByPhpName);
     }
@@ -429,9 +429,9 @@ class Database extends ScopedElement
             }
             $this->tableList[] = $tbl;
             $this->tablesByName[$tbl->getName()] = $tbl;
-            $this->tablesByLowercaseName[strtolower($tbl->getName())] = $tbl;
+            $this->tablesByLowercaseName[strtolower((string)$tbl->getName())] = $tbl;
             $this->tablesByPhpName[$tbl->getPhpName()] = $tbl;
-            if (strpos($tbl->getNamespace(), '\\') === 0) {
+            if (strpos((string)$tbl->getNamespace(), '\\') === 0) {
                 $tbl->setNamespace(substr($tbl->getNamespace(), 1));
             } elseif ($namespace = $this->getNamespace()) {
                 if ($tbl->getNamespace() === null) {
@@ -568,7 +568,7 @@ class Database extends ScopedElement
      *
      * @return boolean True if the behavior exists
      */
-    public function hasBehavior($name)
+    public function hasBehavior($name): bool
     {
         return array_key_exists($name, $this->behaviors);
     }

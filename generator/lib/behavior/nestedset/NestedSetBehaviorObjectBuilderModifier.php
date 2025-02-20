@@ -30,7 +30,7 @@ class NestedSetBehaviorObjectBuilderModifier
         return $this->behavior->getParameter($key);
     }
 
-    protected function getColumnAttribute($name)
+    protected function getColumnAttribute($name): string
     {
         return strtolower($this->behavior->getColumnForParameter($name)->getName());
     }
@@ -52,7 +52,7 @@ class NestedSetBehaviorObjectBuilderModifier
         $this->builder->declareClass($builder->getStubQueryBuilder()->getFullyQualifiedClassname());
     }
 
-    public function objectAttributes($builder)
+    public function objectAttributes($builder): string
     {
         $objectClassname = $builder->getStubObjectBuilder()->getClassname();
 
@@ -78,7 +78,7 @@ protected \$aNestedSetParent = null;
 ";
     }
 
-    public function preSave($builder)
+    public function preSave($builder): string
     {
         $peerClassname = $builder->getStubPeerBuilder()->getClassname();
         $queryClassname = $builder->getStubQueryBuilder()->getClassname();
@@ -112,7 +112,7 @@ protected \$aNestedSetParent = null;
         return $script;
     }
 
-    public function preDelete($builder)
+    public function preDelete($builder): string
     {
         $peerClassname = $builder->getStubPeerBuilder()->getClassname();
 
@@ -126,7 +126,7 @@ if (\$this->isInTree()) {
 ";
     }
 
-    public function postDelete($builder)
+    public function postDelete($builder): string
     {
         $peerClassname = $builder->getStubPeerBuilder()->getClassname();
 
@@ -137,7 +137,7 @@ if (\$this->isInTree()) {
 ";
     }
 
-    public function objectClearReferences($builder)
+    public function objectClearReferences($builder): string
     {
         return "\$this->collNestedSetChildren = null;
 \$this->aNestedSetParent = null;";

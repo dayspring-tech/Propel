@@ -40,7 +40,7 @@ class PropelCSVParser extends PropelParser
      *
      * @return string Converted data, as a CSV string
      */
-    public function fromArray($array, $isList = false, $includeHeading = true)
+    public function fromArray($array, $isList = false, $includeHeading = true): string
     {
         $rows = array();
         if ($isList) {
@@ -109,7 +109,7 @@ class PropelCSVParser extends PropelParser
      *
      * @return string Escaped input value
      */
-    protected function escape($input)
+    protected function escape($input): string
     {
         return str_replace(
             $this->quotechar,
@@ -125,7 +125,7 @@ class PropelCSVParser extends PropelParser
      *
      * @return string Quoted input value
      */
-    protected function quote($input)
+    protected function quote($input): string
     {
         return $this->quotechar . $input . $this->quotechar;
     }
@@ -137,13 +137,13 @@ class PropelCSVParser extends PropelParser
      *
      * @return boolean True if contains any special characters
      */
-    protected function containsSpecialChars($input)
+    protected function containsSpecialChars($input): bool
     {
         $special_chars = str_split($this->lineTerminator, 1);
         $special_chars[] = $this->quotechar;
         $special_chars[] = $this->delimiter;
         foreach ($special_chars as $char) {
-            if (strpos($input, $char) !== false) {
+            if (strpos($input, (string) $char) !== false) {
                 return true;
             }
         }
@@ -158,7 +158,7 @@ class PropelCSVParser extends PropelParser
      *
      * @return string
      */
-    protected function serialize($input)
+    protected function serialize($input): string
     {
         return serialize($input);
     }
@@ -273,7 +273,7 @@ class PropelCSVParser extends PropelParser
         );
     }
 
-    protected function unquote($input)
+    protected function unquote($input): string
     {
         return trim($input, $this->quotechar);
     }

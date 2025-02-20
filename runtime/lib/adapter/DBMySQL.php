@@ -27,7 +27,7 @@ class DBMySQL extends DBAdapter
      *
      * @return string The upper case string.
      */
-    public function toUpperCase($in)
+    public function toUpperCase($in): string
     {
         return "UPPER(" . $in . ")";
     }
@@ -39,7 +39,7 @@ class DBMySQL extends DBAdapter
      *
      * @return string The string in a case that can be ignored.
      */
-    public function ignoreCase($in)
+    public function ignoreCase($in): string
     {
         return "UPPER(" . $in . ")";
     }
@@ -52,7 +52,7 @@ class DBMySQL extends DBAdapter
      *
      * @return string
      */
-    public function concatString($s1, $s2)
+    public function concatString($s1, $s2): string
     {
         return "CONCAT($s1, $s2)";
     }
@@ -66,7 +66,7 @@ class DBMySQL extends DBAdapter
      *
      * @return string
      */
-    public function subString($s, $pos, $len)
+    public function subString($s, $pos, $len): string
     {
         return "SUBSTRING($s, $pos, $len)";
     }
@@ -78,7 +78,7 @@ class DBMySQL extends DBAdapter
      *
      * @return string
      */
-    public function strLength($s)
+    public function strLength($s): string
     {
         return "CHAR_LENGTH($s)";
     }
@@ -116,7 +116,7 @@ class DBMySQL extends DBAdapter
      *
      * @return string
      */
-    public function quoteIdentifier($text)
+    public function quoteIdentifier($text): string
     {
         return '`' . $text . '`';
     }
@@ -128,7 +128,7 @@ class DBMySQL extends DBAdapter
      *
      * @return string
      */
-    public function quoteIdentifierTable($table)
+    public function quoteIdentifierTable($table): string
     {
         // e.g. 'database.table alias' should be escaped as '`database`.`table` `alias`'
         return '`' . strtr($table, array('.' => '`.`', ' ' => '` `')) . '`';
@@ -139,7 +139,7 @@ class DBMySQL extends DBAdapter
      *
      * @return boolean
      */
-    public function useQuoteIdentifier()
+    public function useQuoteIdentifier(): bool
     {
         return true;
     }
@@ -170,7 +170,7 @@ class DBMySQL extends DBAdapter
      *
      * @return string
      */
-    public function random($seed = null)
+    public function random($seed = null): string
     {
         return 'rand(' . ((int) $seed) . ')';
     }
@@ -186,7 +186,7 @@ class DBMySQL extends DBAdapter
      *
      * @return boolean
      */
-    public function bindValue(PDOStatement $stmt, $parameter, $value, ColumnMap $cMap, $position = null)
+    public function bindValue(PDOStatement $stmt, $parameter, $value, ColumnMap $cMap, $position = null): bool
     {
         $pdoType = $cMap->getPdoType();
         // FIXME - This is a temporary hack to get around apparent bugs w/ PDO+MYSQL

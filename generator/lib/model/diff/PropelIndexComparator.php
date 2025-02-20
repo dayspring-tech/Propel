@@ -28,7 +28,7 @@ class PropelIndexComparator
      *
      * @return boolean false if the two indices are similar, true if they have differences
      */
-    public static function computeDiff(Index $fromIndex, Index $toIndex, $caseInsensitive = false)
+    public static function computeDiff(Index $fromIndex, Index $toIndex, $caseInsensitive = false): bool
     {
         // Check for removed index columns in $toIndex
         $fromIndexColumns = $fromIndex->getColumns();

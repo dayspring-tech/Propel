@@ -263,7 +263,7 @@ class ModelCriterion extends Criterion
     /**
      * Returns a hash code value for the object.
      */
-    public function hashCode()
+    public function hashCode(): int
     {
         $h = crc32(serialize($this->value)) ^ crc32($this->comparison) ^ crc32($this->clause);
 
@@ -297,7 +297,7 @@ class ModelCriterion extends Criterion
      */
     protected static function strReplaceOnce($search, $replace, $subject)
     {
-        $firstChar = strpos($subject, $search);
+        $firstChar = strpos($subject, (string) $search);
         if ($firstChar !== false) {
             $beforeStr = substr($subject, 0, $firstChar);
             $afterStr = substr($subject, $firstChar + strlen($search));

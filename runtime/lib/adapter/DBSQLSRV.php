@@ -92,7 +92,7 @@ class DBSQLSRV extends DBMSSQL
      *
      * @return boolean
      */
-    public function bindValue(PDOStatement $stmt, $parameter, $value, ColumnMap $cMap, $position = null)
+    public function bindValue(PDOStatement $stmt, $parameter, $value, ColumnMap $cMap, $position = null): bool
     {
         if ($cMap->isTemporal()) {
             $value = $this->formatTemporalValue($value, $cMap);

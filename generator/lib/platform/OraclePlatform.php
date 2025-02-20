@@ -51,27 +51,27 @@ class OraclePlatform extends DefaultPlatform
         $this->setSchemaDomainMapping(new Domain(PropelTypes::ENUM, "NUMBER", "3", "0"));
     }
 
-    public function getMaxColumnNameLength()
+    public function getMaxColumnNameLength(): int
     {
         return 30;
     }
 
-    public function getNativeIdMethod()
+    public function getNativeIdMethod(): string
     {
         return PropelPlatformInterface::SEQUENCE;
     }
 
-    public function getAutoIncrement()
+    public function getAutoIncrement(): string
     {
         return "";
     }
 
-    public function supportsNativeDeleteTrigger()
+    public function supportsNativeDeleteTrigger(): bool
     {
         return true;
     }
 
-    public function getBeginDDL()
+    public function getBeginDDL(): string
     {
         return "
 ALTER SESSION SET NLS_DATE_FORMAT='YYYY-MM-DD';
@@ -79,7 +79,7 @@ ALTER SESSION SET NLS_TIMESTAMP_FORMAT='YYYY-MM-DD HH24:MI:SS';
 ";
     }
 
-    public function getAddTablesDDL(Database $database)
+    public function getAddTablesDDL(Database $database): string
     {
         $ret = $this->getBeginDDL();
         foreach ($database->getTablesForSql() as $table) {
@@ -100,7 +100,7 @@ ALTER SESSION SET NLS_TIMESTAMP_FORMAT='YYYY-MM-DD HH24:MI:SS';
         return $ret;
     }
 
-    public function getAddTableDDL(Table $table)
+    public function getAddTableDDL(Table $table): string
     {
         $tableDescription = $table->hasDescription() ? $this->getCommentLineDDL($table->getDescription()) : '';
 
@@ -157,7 +157,7 @@ CREATE SEQUENCE %s
         }
     }
 
-    public function getDropTableDDL(Table $table)
+    public function getDropTableDDL(Table $table): string
     {
         $ret = "
 DROP TABLE " . $this->quoteIdentifier($table->getName()) . " CASCADE CONSTRAINTS;
@@ -171,7 +171,7 @@ DROP SEQUENCE " . $this->quoteIdentifier($this->getSequenceName($table)) . ";
         return $ret;
     }
 
-    public function getPrimaryKeyName(Table $table)
+    public function getPrimaryKeyName(Table $table): string
     {
         $tableName = $table->getName();
         // pk constraint name must be 30 chars at most
@@ -193,7 +193,7 @@ DROP SEQUENCE " . $this->quoteIdentifier($this->getSequenceName($table)) . ";
         }
     }
 
-    public function getUniqueDDL(Unique $unique)
+    public function getUniqueDDL(Unique $unique): string
     {
         return sprintf('CONSTRAINT %s UNIQUE (%s)',
             $this->quoteIdentifier($unique->getName()),
@@ -227,7 +227,7 @@ DROP SEQUENCE " . $this->quoteIdentifier($this->getSequenceName($table)) . ";
      *
      * @return boolean
      */
-    public function hasStreamBlobImpl()
+    public function hasStreamBlobImpl(): bool
     {
         return true;
     }
@@ -237,7 +237,7 @@ DROP SEQUENCE " . $this->quoteIdentifier($this->getSequenceName($table)) . ";
         return $text;
     }
 
-    public function getTimestampFormatter()
+    public function getTimestampFormatter(): string
     {
         return 'Y-m-d H:i:s';
     }
@@ -248,7 +248,7 @@ DROP SEQUENCE " . $this->quoteIdentifier($this->getSequenceName($table)) . ";
      *             one fell swoop.
      * @see        Platform::supportsSchemas()
      */
-    public function supportsSchemas()
+    public function supportsSchemas(): bool
     {
         return false;
     }
@@ -261,7 +261,7 @@ DROP SEQUENCE " . $this->quoteIdentifier($this->getSequenceName($table)) . ";
      *
      * @return string oracle vendor sql part
      */
-    public function generateBlockStorage($object, $isPrimaryKey = false)
+    public function generateBlockStorage($object, $isPrimaryKey = false): string
     {
         $vendorSpecific = $object->getVendorInfoForType('oracle');
         if ($vendorSpecific->isEmpty()) {
@@ -319,7 +319,7 @@ USING INDEX
      *
      * @return string
      */
-    public function getAddIndexDDL(Index $index)
+    public function getAddIndexDDL(Index $index): string
     {
         // don't create index form primary key
         if ($this->getPrimaryKeyName($index->getTable()) == $this->quoteIdentifier($index->getName())) {
@@ -366,7 +366,7 @@ CREATE %sINDEX %s ON %s (%s)%s;
      * Warning: duplicates logic from DBOracle::getId().
      * Any code modification here must be ported there.
      */
-    public function getIdentifierPhp($columnValueMutator, $connectionVariableName = '$con', $sequenceName = '', $tab = "			")
+    public function getIdentifierPhp($columnValueMutator, $connectionVariableName = '$con', $sequenceName = '', $tab = "			"): ?string
     {
         if (!$sequenceName) {
             throw new EngineException('Oracle needs a sequence name to fetch primary keys');
@@ -384,12 +384,12 @@ CREATE %sINDEX %s ON %s (%s)%s;
         return preg_replace('/^/m', $tab, $script);
     }
 
-    public function getDefaultFKOnDeleteBehavior()
+    public function getDefaultFKOnDeleteBehavior(): string
     {
         return ForeignKey::NOACTION;
     }
 
-    public function getDefaultFKOnUpdateBehavior()
+    public function getDefaultFKOnUpdateBehavior(): string
     {
         return ForeignKey::NOACTION;
     }

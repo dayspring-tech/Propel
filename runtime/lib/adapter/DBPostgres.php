@@ -28,7 +28,7 @@ class DBPostgres extends DBAdapter
      *
      * @return string The upper case string.
      */
-    public function toUpperCase($in)
+    public function toUpperCase($in): string
     {
         return "UPPER(" . $in . ")";
     }
@@ -40,7 +40,7 @@ class DBPostgres extends DBAdapter
      *
      * @return string The string in a case that can be ignored.
      */
-    public function ignoreCase($in)
+    public function ignoreCase($in): string
     {
         return "UPPER(" . $in . ")";
     }
@@ -53,7 +53,7 @@ class DBPostgres extends DBAdapter
      *
      * @return string
      */
-    public function concatString($s1, $s2)
+    public function concatString($s1, $s2): string
     {
         return "($s1 || $s2)";
     }
@@ -67,7 +67,7 @@ class DBPostgres extends DBAdapter
      *
      * @return string
      */
-    public function subString($s, $pos, $len)
+    public function subString($s, $pos, $len): string
     {
         return "substring($s from $pos" . ($len > -1 ? "for $len" : "") . ")";
     }
@@ -79,7 +79,7 @@ class DBPostgres extends DBAdapter
      *
      * @return string
      */
-    public function strLength($s)
+    public function strLength($s): string
     {
         return "char_length($s)";
     }
@@ -89,7 +89,7 @@ class DBPostgres extends DBAdapter
      *
      * @return integer
      */
-    protected function getIdMethod()
+    protected function getIdMethod(): int
     {
         return DBAdapter::ID_METHOD_SEQUENCE;
     }
@@ -122,7 +122,7 @@ class DBPostgres extends DBAdapter
      *
      * @return string
      */
-    public function getTimestampFormatter()
+    public function getTimestampFormatter(): string
     {
         return "Y-m-d H:i:s O";
     }
@@ -132,7 +132,7 @@ class DBPostgres extends DBAdapter
      *
      * @return string
      */
-    public function getTimeFormatter()
+    public function getTimeFormatter(): string
     {
         return "H:i:s O";
     }
@@ -161,7 +161,7 @@ class DBPostgres extends DBAdapter
      *
      * @return string
      */
-    public function random($seed = null)
+    public function random($seed = null): string
     {
         return 'random()';
     }
@@ -174,7 +174,7 @@ class DBPostgres extends DBAdapter
      *
      * @return string
      */
-    public function getDeleteFromClause($criteria, $tableName)
+    public function getDeleteFromClause($criteria, $tableName): string
     {
         $sql = 'DELETE ';
         if ($queryComment = $criteria->getComment()) {
@@ -202,7 +202,7 @@ class DBPostgres extends DBAdapter
      *
      * @return string
      */
-    public function quoteIdentifierTable($table)
+    public function quoteIdentifierTable($table): string
     {
         // e.g. 'database.table alias' should be escaped as '"database"."table" "alias"'
         return '"' . strtr($table, array('.' => '"."', ' ' => '" "')) . '"';
@@ -245,7 +245,7 @@ class DBPostgres extends DBAdapter
      *
      * @return string
      */
-    public function getExplainPlanQuery($query)
+    public function getExplainPlanQuery($query): string
     {
         return 'EXPLAIN ' . $query;
     }

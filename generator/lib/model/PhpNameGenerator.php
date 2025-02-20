@@ -97,7 +97,7 @@ class PhpNameGenerator implements NameGenerator
     protected function underscoreMethod($schemaName)
     {
         $name = "";
-        $tok = strtok($schemaName, self::STD_SEPARATOR_CHAR);
+        $tok = strtok((string)$schemaName, self::STD_SEPARATOR_CHAR);
         while ($tok !== false) {
             $name .= ucfirst(strtolower($tok));
             $tok = strtok(self::STD_SEPARATOR_CHAR);

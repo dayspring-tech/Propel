@@ -150,7 +150,7 @@ class ArchivableBehavior extends Behavior
         return $builder->getNewStubQueryBuilder($this->getArchiveTable())->getClassname();
     }
 
-    public function hasArchiveClass()
+    public function hasArchiveClass(): bool
     {
         return $this->getParameter('archive_class') != '';
     }
@@ -165,17 +165,17 @@ class ArchivableBehavior extends Behavior
         }
     }
 
-    public function isArchiveOnInsert()
+    public function isArchiveOnInsert(): bool
     {
         return $this->getParameter('archive_on_insert') == 'true';
     }
 
-    public function isArchiveOnUpdate()
+    public function isArchiveOnUpdate(): bool
     {
         return $this->getParameter('archive_on_update') == 'true';
     }
 
-    public function isArchiveOnDelete()
+    public function isArchiveOnDelete(): bool
     {
         return $this->getParameter('archive_on_delete') == 'true';
     }

@@ -317,7 +317,7 @@ class PropelSchemaReverseTask extends PDOTask
      *
      * @return boolean
      */
-    protected function isValidatorRequired($type)
+    protected function isValidatorRequired($type): bool
     {
         return (($this->validatorBits & $type) === $type);
     }

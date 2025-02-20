@@ -16,7 +16,7 @@
  */
 class VersionableBehaviorPeerBuilderModifier
 {
-    public function staticAttributes()
+    public function staticAttributes(): string
     {
         return "
 /**

@@ -149,7 +149,7 @@ class ModelCriteriaWithPreSelectHook extends ModelCriteria
 
 class ModelCriteriaWithPreDeleteHook extends ModelCriteria
 {
-    public function preDelete(PropelPDO $con)
+    public function preDelete(PropelPDO $con): int
     {
         return 12;
     }
@@ -165,7 +165,7 @@ class ModelCriteriaWithPostDeleteHook extends ModelCriteria
 
 class ModelCriteriaWithPreAndPostDeleteHook extends ModelCriteriaWithPostDeleteHook
 {
-    public function preDelete(PropelPDO $con)
+    public function preDelete(PropelPDO $con): int
     {
         return 12;
     }
@@ -189,7 +189,7 @@ class ModelCriteriaWithPostUpdateHook extends ModelCriteria
 
 class ModelCriteriaWithPreAndPostUpdateHook extends ModelCriteriaWithPostUpdateHook
 {
-    public function preUpdate(&$values, PropelPDO $con, $forceIndividualSaves = false)
+    public function preUpdate(&$values, PropelPDO $con, $forceIndividualSaves = false): int
     {
         return 52;
     }

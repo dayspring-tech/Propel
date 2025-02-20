@@ -54,7 +54,7 @@ class TimestampableBehavior extends Behavior
      *
      * @return string The related setter, 'setCreatedOn' or 'setUpdatedOn'
      */
-    protected function getColumnSetter($column)
+    protected function getColumnSetter($column): string
     {
         return 'set' . $this->getColumnForParameter($column)->getPhpName();
     }
@@ -79,7 +79,7 @@ class TimestampableBehavior extends Behavior
      *
      * @return string The code to put at the hook
      */
-    public function preUpdate(PHP5ObjectBuilder $builder)
+    public function preUpdate(PHP5ObjectBuilder $builder): string
     {
         if ($this->withUpdatedAt()) {
             return "if (\$this->isModified() && !\$this->isColumnModified(" . $this->getColumnConstant('update_column', $builder) . ")) {
@@ -97,7 +97,7 @@ class TimestampableBehavior extends Behavior
      *
      * @return string The code to put at the hook
      */
-    public function preInsert(PHP5ObjectBuilder $builder)
+    public function preInsert(PHP5ObjectBuilder $builder): string
     {
         $script = "if (!\$this->isColumnModified(" . $this->getColumnConstant('create_column', $builder) . ")) {
     \$this->" . $this->getColumnSetter('create_column') . "(time());
@@ -132,7 +132,7 @@ public function keepUpdateDateUnchanged()
         }
     }
 
-    public function queryMethods(QueryBuilder $builder)
+    public function queryMethods(QueryBuilder $builder): string
     {
         $script = '';
 
@@ -213,7 +213,7 @@ public function firstCreatedFirst()
         return $script;
     }
 
-    protected function withUpdatedAt()
+    protected function withUpdatedAt(): bool
     {
         return 'true' !== $this->getParameter('disable_updated_at');
     }

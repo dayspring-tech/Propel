@@ -90,7 +90,7 @@ class NestedSetBehavior extends Behavior
         return $this->peerBuilderModifier;
     }
 
-    public function useScope()
+    public function useScope(): bool
     {
         return $this->getParameter('use_scope') == 'true';
     }

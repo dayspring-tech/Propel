@@ -74,7 +74,7 @@ class PgsqlSchemaParser extends BaseSchemaParser
     /**
      *
      */
-    public function parse(Database $database, Task $task = null)
+    public function parse(Database $database, Task $task = null): int
     {
         $stmt = $this->dbh->query("SELECT version() as ver");
         $nativeVersion = $stmt->fetchColumn();

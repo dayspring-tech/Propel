@@ -36,7 +36,7 @@ class ArchivableBehaviorObjectBuilderModifier
      *
      * @return string The PHP code to be added to the builder.
      */
-    public function objectAttributes(PHP5ObjectBuilder $builder)
+    public function objectAttributes(PHP5ObjectBuilder $builder): string
     {
         if (!$this->behavior->hasArchiveClass()) {
             $builder->declareClassFromBuilder($builder->getNewStubQueryBuilder($this->behavior->getArchiveTable()));
@@ -66,7 +66,7 @@ class ArchivableBehaviorObjectBuilderModifier
      *
      * @return string The PHP code to be added to the builder.
      */
-    public function postInsert(PHP5ObjectBuilder $builder)
+    public function postInsert(PHP5ObjectBuilder $builder): string
     {
         if ($this->behavior->isArchiveOnInsert()) {
             return "if (\$this->archiveOnInsert) {
@@ -86,7 +86,7 @@ class ArchivableBehaviorObjectBuilderModifier
      *
      * @return string The PHP code to be added to the builder.
      */
-    public function postUpdate(PHP5ObjectBuilder $builder)
+    public function postUpdate(PHP5ObjectBuilder $builder): string
     {
         if ($this->behavior->isArchiveOnUpdate()) {
             return "if (\$this->archiveOnUpdate) {
@@ -121,7 +121,7 @@ class ArchivableBehaviorObjectBuilderModifier
     /**
      * @return string the PHP code to be added to the builder
      */
-    public function objectMethods($builder)
+    public function objectMethods($builder): string
     {
         $this->builder = $builder;
 
@@ -208,7 +208,7 @@ class ArchivableBehaviorObjectBuilderModifier
      *
      * @return boolean
      */
-    public function fakeAutoIncrementPrimaryKeyForConcreteInheritance()
+    public function fakeAutoIncrementPrimaryKeyForConcreteInheritance(): bool
     {
         if ($this->table->hasBehavior('concrete_inheritance')) {
             $concrete_inheritance_behavior = $this->table->getBehavior('concrete_inheritance');

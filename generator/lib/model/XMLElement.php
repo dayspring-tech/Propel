@@ -91,13 +91,13 @@ abstract class XMLElement
         if (is_numeric($val)) {
             return (bool) $val;
         } else {
-            return (in_array(strtolower($val), array('true', 't', 'y', 'yes'), true) ? true : false);
+            return (in_array(strtolower((string)$val), array('true', 't', 'y', 'yes'), true) ? true : false);
         }
     }
 
     protected function getDefaultValueForArray($stringValue)
     {
-        $stringValue = trim($stringValue);
+        $stringValue = trim((string)$stringValue);
 
         if (empty($stringValue)) {
             return null;

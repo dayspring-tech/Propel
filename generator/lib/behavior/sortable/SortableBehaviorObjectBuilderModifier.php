@@ -54,7 +54,7 @@ class SortableBehaviorObjectBuilderModifier
         return $this->behavior->getParameter($key);
     }
 
-    protected function getColumnAttribute($name)
+    protected function getColumnAttribute($name): string
     {
         return strtolower($this->behavior->getColumnForParameter($name)->getName());
     }
@@ -77,7 +77,7 @@ class SortableBehaviorObjectBuilderModifier
      *
      * @return string The related getter, e.g. 'getRank'
      */
-    protected function getColumnGetter($columnName = 'rank_column')
+    protected function getColumnGetter($columnName = 'rank_column'): string
     {
         return 'get' . $this->behavior->getColumnForParameter($columnName)->getPhpName();
     }
@@ -87,17 +87,17 @@ class SortableBehaviorObjectBuilderModifier
      *
      * @return string The related setter, e.g. 'setRank'
      */
-    protected function getColumnSetter($columnName = 'rank_column')
+    protected function getColumnSetter($columnName = 'rank_column'): string
     {
         return 'set' . $this->behavior->getColumnForParameter($columnName)->getPhpName();
     }
 
-    public function preSave($builder)
+    public function preSave($builder): string
     {
         return "\$this->processSortableQueries(\$con);";
     }
 
-    public function preInsert($builder)
+    public function preInsert($builder): string
     {
         $useScope = $this->behavior->useScope();
         $this->setBuilder($builder);
@@ -132,7 +132,7 @@ if (($condition) && !\$this->isColumnModified({$this->peerClassname}::RANK_COL))
         }
     }
 
-    public function preDelete($builder)
+    public function preDelete($builder): string
     {
         $useScope = $this->behavior->useScope();
         $this->setBuilder($builder);
@@ -143,7 +143,7 @@ if (($condition) && !\$this->isColumnModified({$this->peerClassname}::RANK_COL))
 ";
     }
 
-    public function objectAttributes($builder)
+    public function objectAttributes($builder): string
     {
         $script = "
 /**

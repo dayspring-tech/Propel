@@ -60,7 +60,7 @@ class PropelSqlManager
         return $this->connections;
     }
 
-    public function hasConnection($connection)
+    public function hasConnection($connection): bool
     {
         return isset($this->connections[$connection]);
     }
@@ -153,7 +153,7 @@ class PropelSqlManager
     /**
      * @return string
      */
-    public function getSqlDbMapFilename()
+    public function getSqlDbMapFilename(): string
     {
         return $this->getWorkingDirectory() . DIRECTORY_SEPARATOR . 'sqldb.map';
     }
@@ -194,7 +194,7 @@ class PropelSqlManager
      *
      * @throws PDOException
      */
-    public function insertSql($datasource = null)
+    public function insertSql($datasource = null): bool
     {
         $statementsToInsert = array();
         foreach ($this->getProperties($this->getSqlDbMapFilename()) as $sqlFile => $database) {

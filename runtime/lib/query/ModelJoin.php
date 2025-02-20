@@ -103,7 +103,7 @@ class ModelJoin extends Join
     /**
      * @return bool
      */
-    public function isPrimary()
+    public function isPrimary(): bool
     {
         return null === $this->previousJoin;
     }
@@ -153,7 +153,7 @@ class ModelJoin extends Join
      *
      * @return bool
      */
-    public function equals($join)
+    public function equals($join): bool
     {
         return parent::equals($join)
             && $this->relationMap == $join->getRelationMap()

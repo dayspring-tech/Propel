@@ -137,7 +137,7 @@ class SortableBehavior extends Behavior
      * @param  string $name
      * @return string
      */
-    public function getColumnGetter($name)
+    public function getColumnGetter($name): string
     {
         return 'get' . $this->getTable()->getColumn($name)->getPhpName();
     }
@@ -148,7 +148,7 @@ class SortableBehavior extends Behavior
      * @param  string $name
      * @return string
      */
-    public function getColumnSetter($name)
+    public function getColumnSetter($name): string
     {
         return 'set' . $this->getTable()->getColumn($name)->getPhpName();
     }
@@ -182,7 +182,7 @@ class SortableBehavior extends Behavior
      *
      * @return bool
      */
-    public function hasMultipleScopes()
+    public function hasMultipleScopes(): bool
     {
         return count($this->getScopes()) > 1;
     }
@@ -214,7 +214,7 @@ class SortableBehavior extends Behavior
         return $this->peerBuilderModifier;
     }
 
-    public function useScope()
+    public function useScope(): bool
     {
         return $this->getParameter('use_scope') == 'true';
     }

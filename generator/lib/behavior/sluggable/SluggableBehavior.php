@@ -57,7 +57,7 @@ class SluggableBehavior extends Behavior
      *
      * @return string The related getter, e.g. 'getSlug'
      */
-    protected function getColumnGetter()
+    protected function getColumnGetter(): string
     {
         return 'get' . $this->getColumnForParameter('slug_column')->getPhpName();
     }
@@ -67,7 +67,7 @@ class SluggableBehavior extends Behavior
      *
      * @return string The related setter, e.g. 'setSlug'
      */
-    protected function getColumnSetter()
+    protected function getColumnSetter(): string
     {
         return 'set' . $this->getColumnForParameter('slug_column')->getPhpName();
     }
@@ -77,7 +77,7 @@ class SluggableBehavior extends Behavior
      *
      * @return string The code to put at the hook
      */
-    public function preSave(PHP5ObjectBuilder $builder)
+    public function preSave(PHP5ObjectBuilder $builder): string
     {
         $const = $builder->getColumnConstant($this->getColumnForParameter('slug_column'));
         $pattern = $this->getParameter('slug_pattern');
@@ -192,7 +192,7 @@ protected function createSlug()
 ";
     }
 
-    protected function addCreateRawSlug(&$script)
+    protected function addCreateRawSlug(&$script): string
     {
         $pattern = $this->getParameter('slug_pattern');
         $script .= "
@@ -231,7 +231,7 @@ protected static function cleanupSlugPart(\$slug, \$replacement = '" . $this->ge
 {
     // transliterate
     if (function_exists('iconv')) {
-        \$slug = iconv('utf-8', 'us-ascii//TRANSLIT', \$slug);
+        \$slug = iconv('utf-8', 'us-ascii//TRANSLIT', (string)\$slug);
     }
 
     // lowercase
@@ -432,7 +432,7 @@ public function findOneBySlug(\$slug, \$con = null)
      *
      * @return string
      */
-    protected function underscore($string)
+    protected function underscore($string): string
     {
         return strtolower(preg_replace(array('/([A-Z]+)([A-Z][a-z])/', '/([a-z\d])([A-Z])/'), array('\\1_\\2', '\\1_\\2'), strtr($string, '_', '.')));
     }

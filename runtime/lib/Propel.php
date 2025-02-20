@@ -404,7 +404,7 @@ class Propel
      *
      * @return bool True if Propel uses logging
      */
-    public static function hasLogger()
+    public static function hasLogger(): bool
     {
         return (self::$logger !== null);
     }
@@ -820,7 +820,7 @@ class Propel
      *
      * @return boolean TRUE if the class was loaded, false otherwise.
      */
-    public static function autoload($className)
+    public static function autoload($className): bool
     {
         if (isset(self::$autoloadMap[$className])) {
             require self::$baseDir . self::$autoloadMap[$className];
@@ -901,7 +901,7 @@ class Propel
      * @return boolean true if the method changed the instance pooling state,
      *                 false if it was already disabled
      */
-    public static function disableInstancePooling()
+    public static function disableInstancePooling(): bool
     {
         if (!self::$instancePoolingEnabled) {
             return false;
@@ -917,7 +917,7 @@ class Propel
      * @return boolean true if the method changed the instance pooling state,
      *                 false if it was already enabled
      */
-    public static function enableInstancePooling()
+    public static function enableInstancePooling(): bool
     {
         if (self::$instancePoolingEnabled) {
             return false;

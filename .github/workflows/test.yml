@@ -8,20 +8,23 @@ jobs:
         env:
             DB: mysql
             DB_USER: root
-        runs-on: ubuntu-20.04
+        runs-on: ubuntu-24.04
         strategy:
             fail-fast: false
             matrix:
                 php:
-                    - '7.4'
+#                    - '7.4'
                     - '8.0'
                     - '8.1'
+                    - '8.2'
+                    - '8.3'
+                    - '8.4'
                 composer:
                     - ''
                     - '--prefer-lowest'
 
         steps:
-            - uses: actions/checkout@v2
+            - uses: actions/checkout@v4
 
             - name: Use PHP
               uses: shivammathur/setup-php@v2
@@ -29,7 +32,7 @@ jobs:
                   php-version: ${{ matrix.php }}
                   extensions: sqlite3, zip
                   coverage: xdebug
-                  tools: composer:v1
+                  tools: composer:v2
 
             - name: Get Composer Cache Directory
               id: composer-cache
@@ -39,7 +42,7 @@ jobs:
 
             - name: cache dependencies
               id: cache-dependencies
-              uses: actions/cache@v1
+              uses: actions/cache@v4
               with:
                   path: ${{ steps.composer-cache.outputs.dir }}
                   key: ${{ runner.os }}-${{ matrix.php }}-${{ matrix.composer }}-composer-${{ hashFiles('**/composer.lock') }}
@@ -54,7 +57,7 @@ jobs:
               env:
                   COMPOSER_AUTH: ${{ secrets.COMPOSER_AUTH }}
                   COMPOSER_FLAGS: ${{ matrix.composer }}
-              run: composer update ${COMPOSER_FLAGS} --prefer-source
+              run: composer update ${COMPOSER_FLAGS}
               working-directory: ./
 
             - name: Start MySQL
@@ -66,6 +69,10 @@ jobs:
               run: |
                   echo "SET GLOBAL sql_mode = ''" | mysql -u root -proot mysql              
 
+            - name: Add hosts to /etc/hosts
+              run: |
+                  sudo echo "127.0.0.1 db" | sudo tee -a /etc/hosts
+
             - name: setup database
               run: |
                   sh -c "if [ '$DB' = 'mysql' ]; then mysql -u root -proot mysql -e 'SET FOREIGN_KEY_CHECKS = 0; DROP DATABASE IF EXISTS test; DROP SCHEMA IF EXISTS second_hand_books; DROP SCHEMA IF EXISTS contest; DROP DATABASE IF EXISTS reverse_bookstore; DROP SCHEMA IF EXISTS bookstore_schemas; SET FOREIGN_KEY_CHECKS = 1;'; fi"
@@ -76,3 +83,5 @@ jobs:
             - name: Run Tests
               run: vendor/bin/phpunit
               working-directory: ./
+              env:
+                SYMFONY_DEPRECATIONS_HELPER: weak

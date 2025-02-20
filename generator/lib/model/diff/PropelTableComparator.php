@@ -109,7 +109,7 @@ class PropelTableComparator
      *
      * @return integer The number of column differences
      */
-    public function compareColumns($caseInsensitive = false)
+    public function compareColumns($caseInsensitive = false): int
     {
         $fromTableColumns = $this->getFromTable()->getColumns();
         $toTableColumns = $this->getToTable()->getColumns();
@@ -171,7 +171,7 @@ class PropelTableComparator
      *
      * @return integer The number of primary key differences
      */
-    public function comparePrimaryKeys($caseInsensitive = false)
+    public function comparePrimaryKeys($caseInsensitive = false): int
     {
         $pkDifferences = 0;
         $fromTablePk = $this->getFromTable()->getPrimaryKey();
@@ -221,7 +221,7 @@ class PropelTableComparator
      *
      * @return integer The number of index differences
      */
-    public function compareIndices($caseInsensitive = false)
+    public function compareIndices($caseInsensitive = false): int
     {
         $indexDifferences = 0;
         $fromTableIndices = array_merge($this->getFromTable()->getIndices(), $this->getFromTable()->getUnices());
@@ -270,7 +270,7 @@ class PropelTableComparator
      *
      * @return integer The number of foreign key differences
      */
-    public function compareForeignKeys($caseInsensitive = false)
+    public function compareForeignKeys($caseInsensitive = false): int
     {
         $fkDifferences = 0;
         $fromTableFks = $this->getFromTable()->getForeignKeys();

@@ -242,7 +242,7 @@ class I18nBehavior extends Behavior
         return $columns;
     }
 
-    public function replaceTokens($string)
+    public function replaceTokens($string): string
     {
         $table = $this->getTable();
 

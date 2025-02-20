@@ -408,12 +408,12 @@ class XmlToAppData
      */
     protected function isAbsolutePath($file)
     {
-        if (strspn($file, '/\\', 0, 1)
-            || (strlen($file) > 3 && ctype_alpha($file[0])
-            && substr($file, 1, 1) === ':'
-            && (strspn($file, '/\\', 2, 1))
+        if (strspn((string)$file, '/\\', 0, 1)
+            || (strlen((string)$file) > 3 && ctype_alpha($file[0])
+            && substr((string)$file, 1, 1) === ':'
+            && (strspn((string)$file, '/\\', 2, 1))
         )
-        || null !== parse_url($file, PHP_URL_SCHEME)
+        || null !== parse_url((string)$file, PHP_URL_SCHEME)
         ) {
             return true;
         }

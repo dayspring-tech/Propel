@@ -26,7 +26,7 @@ class I18nBehaviorQueryBuilderModifier
         $this->table = $behavior->getTable();
     }
 
-    public function queryMethods($builder)
+    public function queryMethods($builder): string
     {
         $this->builder = $builder;
         $script = '';

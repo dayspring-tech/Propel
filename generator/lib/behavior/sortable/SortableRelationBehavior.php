@@ -34,7 +34,7 @@ class SortableRelationBehavior extends Behavior
         return $script;
     }
 
-    public function preDelete($builder)
+    public function preDelete($builder): string
     {
         $this->builder = $builder;
 
@@ -61,12 +61,12 @@ class SortableRelationBehavior extends Behavior
         return $this->builder->getPluralizer()->getPluralForm($relatedClass);
     }
 
-    protected function getObjectMoveRelatedToNullScopeMethodName()
+    protected function getObjectMoveRelatedToNullScopeMethodName(): string
     {
         return "moveRelated{$this->getRelatedClassPluralForm()}ToNullScope";
     }
 
-    protected function addObjectMoveRelatedToNullScope(&$script)
+    protected function addObjectMoveRelatedToNullScope(&$script): string
     {
         $peerClass = $this->builder->getNewStubPeerBuilder($this->getForeignTable())->getClassname();
         $queryClass = $this->builder->getNewStubQueryBuilder($this->getForeignTable())->getClassname();

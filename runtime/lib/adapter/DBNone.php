@@ -62,7 +62,7 @@ class DBNone extends DBAdapter
      *
      * @return string
      */
-    public function concatString($s1, $s2)
+    public function concatString($s1, $s2): string
     {
         return ($s1 . $s2);
     }
@@ -76,7 +76,7 @@ class DBNone extends DBAdapter
      *
      * @return string
      */
-    public function subString($s, $pos, $len)
+    public function subString($s, $pos, $len): string
     {
         return substr($s, $pos, $len);
     }
@@ -88,7 +88,7 @@ class DBNone extends DBAdapter
      *
      * @return string
      */
-    public function strLength($s)
+    public function strLength($s): int
     {
         return strlen($s);
     }

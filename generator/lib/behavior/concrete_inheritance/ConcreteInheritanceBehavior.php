@@ -125,7 +125,7 @@ class ConcreteInheritanceBehavior extends Behavior
         return $database->getTable($tableName);
     }
 
-    protected function isCopyData()
+    protected function isCopyData(): bool
     {
         return $this->getParameter('copy_data_to_parent') == 'true';
     }

@@ -37,7 +37,7 @@ class SoftDeleteBehavior extends Behavior
         }
     }
 
-    protected function getColumnSetter()
+    protected function getColumnSetter(): string
     {
         return 'set' . $this->getColumnForParameter('deleted_column')->getPhpName();
     }
@@ -89,7 +89,7 @@ public function unDelete(PropelPDO \$con = null)
 ";
     }
 
-    public function preDelete($builder)
+    public function preDelete($builder): string
     {
         $script = "if (!empty(\$ret) && {$builder->getStubQueryBuilder()->getClassname()}::isSoftDeleteEnabled()) {";
 
@@ -119,7 +119,7 @@ public function unDelete(PropelPDO \$con = null)
         return $script;
     }
 
-    public function queryAttributes()
+    public function queryAttributes(): string
     {
         return "protected static \$softDelete = true;
 protected \$localSoftDelete = true;
@@ -270,7 +270,7 @@ public static function isSoftDeleteEnabled()
 ";
     }
 
-    public function preSelectQuery($builder)
+    public function preSelectQuery($builder): string
     {
         return <<<EOT
 if ({$builder->getStubQueryBuilder()->getClassname()}::isSoftDeleteEnabled() && \$this->localSoftDelete) {
@@ -280,7 +280,7 @@ if ({$builder->getStubQueryBuilder()->getClassname()}::isSoftDeleteEnabled() && 
 EOT;
     }
 
-    public function preDeleteQuery($builder)
+    public function preDeleteQuery($builder): string
     {
         return <<<EOT
 if ({$builder->getStubQueryBuilder()->getClassname()}::isSoftDeleteEnabled() && \$this->localSoftDelete) {
@@ -473,7 +473,7 @@ public static function doDeleteAll2(PropelPDO \$con = null)
 ";
     }
 
-    public function preSelect($builder)
+    public function preSelect($builder): string
     {
         return <<<EOT
 if ({$builder->getStubQueryBuilder()->getClassname()}::isSoftDeleteEnabled()) {

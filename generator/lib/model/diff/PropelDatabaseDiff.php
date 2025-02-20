@@ -70,7 +70,7 @@ class PropelDatabaseDiff
      *
      * @return integer
      */
-    public function countAddedTables()
+    public function countAddedTables(): int
     {
         return count($this->addedTables);
     }
@@ -133,7 +133,7 @@ class PropelDatabaseDiff
      *
      * @return integer
      */
-    public function countRemovedTables()
+    public function countRemovedTables(): int
     {
         return count($this->removedTables);
     }
@@ -176,7 +176,7 @@ class PropelDatabaseDiff
      *
      * @return integer
      */
-    public function countModifiedTables()
+    public function countModifiedTables(): int
     {
         return count($this->modifiedTables);
     }
@@ -227,7 +227,7 @@ class PropelDatabaseDiff
      *
      * @return integer
      */
-    public function countRenamedTables()
+    public function countRenamedTables(): int
     {
         return count($this->renamedTables);
     }
@@ -264,7 +264,7 @@ class PropelDatabaseDiff
      *
      * @return string
      */
-    public function getDescription()
+    public function getDescription(): string
     {
         $changes = array();
         if ($count = $this->countAddedTables()) {

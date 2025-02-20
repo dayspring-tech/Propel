@@ -24,7 +24,7 @@ class MssqlDataSQLBuilder extends DataSQLBuilder
      *
      * @return string
      */
-    protected function getBlobSql($blob)
+    protected function getBlobSql($blob): string
     {
         // they took magic __toString() out of PHP5.0.0; this sucks
         if (is_object($blob)) {

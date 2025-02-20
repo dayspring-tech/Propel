@@ -47,7 +47,7 @@ class VersionableBehaviorObjectBuilderModifier
         return $this->behavior->getParameter($key);
     }
 
-    protected function getColumnAttribute($name = 'version_column')
+    protected function getColumnAttribute($name = 'version_column'): string
     {
         return strtolower($this->behavior->getColumnForParameter($name)->getName());
     }
@@ -82,7 +82,7 @@ class VersionableBehaviorObjectBuilderModifier
      *
      * @return string The related getter, e.g. 'getVersion'
      */
-    protected function getColumnGetter($name = 'version_column')
+    protected function getColumnGetter($name = 'version_column'): string
     {
         return 'get' . $this->getColumnPhpName($name);
     }
@@ -94,12 +94,12 @@ class VersionableBehaviorObjectBuilderModifier
      *
      * @return string The related setter, e.g. 'setVersion'
      */
-    protected function getColumnSetter($name = 'version_column')
+    protected function getColumnSetter($name = 'version_column'): string
     {
         return 'set' . $this->getColumnPhpName($name);
     }
 
-    public function preSave(PHP5ObjectBuilder $builder)
+    public function preSave(PHP5ObjectBuilder $builder): string
     {
         $script = "if (\$this->isVersioningNecessary()) {
     \$this->set{$this->getColumnPhpName()}(\$this->isNew() ? 1 : \$this->getLastVersionNumber(\$con) + 1);";
@@ -126,7 +126,7 @@ class VersionableBehaviorObjectBuilderModifier
         return $script;
     }
 
-    public function postSave(PHP5ObjectBuilder $builder)
+    public function postSave(PHP5ObjectBuilder $builder): string
     {
         return "if (isset(\$createVersion)) {
     \$this->addVersion(\$con);

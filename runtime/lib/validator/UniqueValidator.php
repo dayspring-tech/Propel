@@ -33,7 +33,7 @@ class UniqueValidator implements BasicValidator
      *
      * @return boolean
      */
-    public function isValid(ValidatorMap $map, $str)
+    public function isValid(ValidatorMap $map, $str): bool
     {
         $column = $map->getColumn();
 

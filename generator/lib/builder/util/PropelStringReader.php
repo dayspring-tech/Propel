@@ -44,7 +44,7 @@ class PropelStringReader extends Reader
         $this->currPos = $this->currPos + $n;
     }
 
-    public function eof()
+    public function eof(): bool
     {
         return $this->currPos == strlen($this->_string);
     }

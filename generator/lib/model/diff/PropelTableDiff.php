@@ -365,7 +365,7 @@ class PropelTableDiff
      *
      * @return boolean
      */
-    public function hasModifiedPk()
+    public function hasModifiedPk(): bool
     {
         return $this->renamedPkColumns || $this->removedPkColumns || $this->addedPkColumns;
     }

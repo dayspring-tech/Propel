@@ -105,7 +105,7 @@ class PropelDatabaseComparator
      *
      * @return integer The number of table differences
      */
-    public function compareTables($caseInsensitive = false)
+    public function compareTables($caseInsensitive = false): int
     {
         $fromDatabaseTables = $this->fromDatabase->getTables();
         $toDatabaseTables = $this->toDatabase->getTables();

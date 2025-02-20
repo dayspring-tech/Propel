@@ -576,7 +576,7 @@ class Table extends ScopedElement implements IDMethod
      *
      * @return string
      */
-    public function getColumnList($columns, $delim = ',')
+    public function getColumnList($columns, $delim = ','): string
     {
         $list = array();
         foreach ($columns as $col) {
@@ -730,7 +730,7 @@ class Table extends ScopedElement implements IDMethod
             }
             $this->columnList[] = $col;
             $this->columnsByName[$col->getName()] = $col;
-            $this->columnsByLowercaseName[strtolower($col->getName())] = $col;
+            $this->columnsByLowercaseName[strtolower((string)$col->getName())] = $col;
             $this->columnsByPhpName[$col->getPhpName()] = $col;
             $col->setPosition(count($this->columnList));
             $this->needsTransactionInPostgres |= $col->requiresTransactionInPostgres();
@@ -1076,7 +1076,7 @@ class Table extends ScopedElement implements IDMethod
      *
      * @return bool
      */
-    public function hasIndex($name)
+    public function hasIndex($name): bool
     {
         foreach ($this->indices as $idx) {
             if ($idx->getName() == $name) {
@@ -1195,7 +1195,7 @@ class Table extends ScopedElement implements IDMethod
      *
      * @return boolean True if the behavior exists
      */
-    public function hasBehavior($name)
+    public function hasBehavior($name): bool
     {
         return array_key_exists($name, $this->behaviors);
     }
@@ -1218,7 +1218,7 @@ class Table extends ScopedElement implements IDMethod
      * @return boolean true in the table has at least one behavior
      *                with an additional builder, false otherwise
      */
-    public function hasAdditionalBuilders()
+    public function hasAdditionalBuilders(): bool
     {
         foreach ($this->getBehaviors() as $behavior) {
             if ($behavior->hasAdditionalBuilders()) {
@@ -1267,7 +1267,7 @@ class Table extends ScopedElement implements IDMethod
     /**
      * Whether the Table has a description
      */
-    public function hasDescription()
+    public function hasDescription(): bool
     {
         return (bool) $this->description;
     }
@@ -1326,7 +1326,7 @@ class Table extends ScopedElement implements IDMethod
      *
      * @return string
      */
-    public function getStudlyPhpName()
+    public function getStudlyPhpName(): string
     {
         $phpname = $this->getPhpName();
         if (strlen($phpname) > 1) {
@@ -1420,7 +1420,7 @@ class Table extends ScopedElement implements IDMethod
      *
      * @return boolean Value of skipSql.
      */
-    public function isSkipSql()
+    public function isSkipSql(): bool
     {
         return ($this->skipSql || $this->isAlias() || $this->isForReferenceOnly());
     }
@@ -1482,7 +1482,7 @@ class Table extends ScopedElement implements IDMethod
      *
      * @return boolean
      */
-    public function isAlias()
+    public function isAlias(): bool
     {
         return ($this->alias !== null);
     }
@@ -1558,7 +1558,7 @@ class Table extends ScopedElement implements IDMethod
     /**
      * Utility method to get the number of columns in this table
      */
-    public function getNumColumns()
+    public function getNumColumns(): int
     {
         return count($this->columnList);
     }
@@ -1566,7 +1566,7 @@ class Table extends ScopedElement implements IDMethod
     /**
      * Utility method to get the number of columns in this table
      */
-    public function getNumLazyLoadColumns()
+    public function getNumLazyLoadColumns(): int
     {
         $count = 0;
         foreach ($this->columnList as $col) {
@@ -1583,7 +1583,7 @@ class Table extends ScopedElement implements IDMethod
      *
      * @return boolean
      */
-    public function hasEnumColumns()
+    public function hasEnumColumns(): bool
     {
 
         foreach ($this->getColumns() as $col) {
@@ -1944,7 +1944,7 @@ class Table extends ScopedElement implements IDMethod
      *
      * @return boolean Whether this table has any primary key parts.
      */
-    public function hasPrimaryKey()
+    public function hasPrimaryKey(): bool
     {
         return (count($this->getPrimaryKey()) > 0);
     }
@@ -1954,7 +1954,7 @@ class Table extends ScopedElement implements IDMethod
      *
      * @return boolean Whether this table has more than one primary key parts.
      */
-    public function hasCompositePrimaryKey()
+    public function hasCompositePrimaryKey(): bool
     {
         return (count($this->getPrimaryKey()) > 1);
     }
@@ -1977,7 +1977,7 @@ class Table extends ScopedElement implements IDMethod
      *
      * @return boolean Whether this table has a non-"none" id method and has a primary key column that is auto-increment.
      */
-    public function hasAutoIncrementPrimaryKey()
+    public function hasAutoIncrementPrimaryKey(): bool
     {
         if ($this->getIdMethod() != IDMethod::NO_ID_METHOD) {
             $pks = $this->getPrimaryKey();
@@ -2049,7 +2049,7 @@ class Table extends ScopedElement implements IDMethod
      * @return A CSV list.
      * @deprecated Use the Platform::getColumnListDDL() method.
      */
-    private function printList($list)
+    private function printList($list): string
     {
         $result = "";
         $comma = 0;
@@ -2068,7 +2068,7 @@ class Table extends ScopedElement implements IDMethod
      *
      * @return Boolean
      */
-    public function hasForeignKeys()
+    public function hasForeignKeys(): bool
     {
         return (count($this->getForeignKeys()) !== 0);
     }
@@ -2078,7 +2078,7 @@ class Table extends ScopedElement implements IDMethod
      *
      * @return Boolean
      */
-    public function hasCrossForeignKeys()
+    public function hasCrossForeignKeys(): bool
     {
         return (count($this->getCrossFks()) !== 0);
     }

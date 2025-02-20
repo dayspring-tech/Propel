@@ -36,7 +36,7 @@ class PropelSchemaValidator
     /**
      * @return boolean true if valid, false otherwise
      */
-    public function validate()
+    public function validate(): bool
     {
         foreach ($this->appData->getDatabases() as $database) {
             $this->validateDatabaseTables($database);

@@ -86,7 +86,7 @@ class PropelArrayFormatter extends PropelFormatter
         return $record ? $record->toArray() : array();
     }
 
-    public function isObjectFormatter()
+    public function isObjectFormatter(): bool
     {
         return false;
     }

@@ -58,12 +58,12 @@ class PropelPHPParser
         return $this->isAddPhp ? $this->removePhp($this->code) : $this->code;
     }
 
-    protected function addPhp($code)
+    protected function addPhp($code): string
     {
         return '<?php ' . $code;
     }
 
-    protected function removePhp($code)
+    protected function removePhp($code): string
     {
         return substr($code, 6);
     }

@@ -25,7 +25,7 @@ class PropelDotGenerator
      *
      * @return string The DOT syntax created.
      */
-    public static function create(Database $database)
+    public static function create(Database $database): string
     {
         $dotSyntax = '';
 

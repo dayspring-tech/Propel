@@ -41,17 +41,17 @@ class SqlitePlatform extends DefaultPlatform
     /**
      * @link       http://www.sqlite.org/autoinc.html
      */
-    public function getAutoIncrement()
+    public function getAutoIncrement(): string
     {
         return "PRIMARY KEY";
     }
 
-    public function getMaxColumnNameLength()
+    public function getMaxColumnNameLength(): int
     {
         return 1024;
     }
 
-    public function getAddTableDDL(Table $table)
+    public function getAddTableDDL(Table $table): string
     {
         $tableDescription = $table->hasDescription() ? $this->getCommentLineDDL($table->getDescription()) : '';
 
@@ -89,13 +89,13 @@ class SqlitePlatform extends DefaultPlatform
         );
     }
 
-    public function getDropPrimaryKeyDDL(Table $table)
+    public function getDropPrimaryKeyDDL(Table $table): string
     {
         // FIXME: not supported by SQLite
         return '';
     }
 
-    public function getAddPrimaryKeyDDL(Table $table)
+    public function getAddPrimaryKeyDDL(Table $table): string
     {
         // FIXME: not supported by SQLite
         return '';
@@ -107,19 +107,19 @@ class SqlitePlatform extends DefaultPlatform
         return $this->getForeignKeyDDL($fk);
     }
 
-    public function getDropForeignKeyDDL(ForeignKey $fk)
+    public function getDropForeignKeyDDL(ForeignKey $fk): string
     {
         return '';
     }
 
-    public function getDropTableDDL(Table $table)
+    public function getDropTableDDL(Table $table): string
     {
         return "
 DROP TABLE IF EXISTS " . $this->quoteIdentifier($table->getName()) . ";
 ";
     }
 
-    public function getForeignKeyDDL(ForeignKey $fk)
+    public function getForeignKeyDDL(ForeignKey $fk): string
     {
         $pattern = "
 -- SQLite does not support foreign keys; this is just for reference
@@ -133,7 +133,7 @@ DROP TABLE IF EXISTS " . $this->quoteIdentifier($table->getName()) . ";
         );
     }
 
-    public function hasSize($sqlType)
+    public function hasSize($sqlType): bool
     {
         return !("MEDIUMTEXT" == $sqlType || "LONGTEXT" == $sqlType || "BLOB" == $sqlType || "MEDIUMBLOB" == $sqlType || "LONGBLOB" == $sqlType);
     }
@@ -162,7 +162,7 @@ DROP TABLE IF EXISTS " . $this->quoteIdentifier($table->getName()) . ";
     /**
      * @see        Platform::supportsMigrations()
      */
-    public function supportsMigrations()
+    public function supportsMigrations(): bool
     {
         return false;
     }

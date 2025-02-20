@@ -36,7 +36,7 @@ class ArchivableBehaviorQueryBuilderModifier
      *
      * @return string
      */
-    public function queryAttributes(QueryBuilder $builder)
+    public function queryAttributes(QueryBuilder $builder): string
     {
         $script = '';
         if ($this->behavior->isArchiveOnUpdate()) {
@@ -51,7 +51,7 @@ class ArchivableBehaviorQueryBuilderModifier
         return $script;
     }
 
-    public function preDeleteQuery(QueryBuilder $builder)
+    public function preDeleteQuery(QueryBuilder $builder): string
     {
         if ($this->behavior->isArchiveOnDelete()) {
             return "
@@ -71,7 +71,7 @@ if (\$this->archiveOnDelete) {
      *
      * @return string
      */
-    public function postUpdateQuery(QueryBuilder $builder)
+    public function postUpdateQuery(QueryBuilder $builder): string
     {
         if ($this->behavior->isArchiveOnUpdate()) {
             return "
@@ -91,7 +91,7 @@ if (\$this->archiveOnUpdate) {
      *
      * @return string the PHP code to be added to the builder
      */
-    public function queryMethods(QueryBuilder $builder)
+    public function queryMethods(QueryBuilder $builder): string
     {
         $script = '';
         $script .= $this->addArchive($builder);

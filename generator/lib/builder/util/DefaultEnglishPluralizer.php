@@ -26,7 +26,7 @@ class DefaultEnglishPluralizer implements Pluralizer
      *
      * @return string The plural form of $root (e.g. Authors).
      */
-    public function getPluralForm($root)
+    public function getPluralForm($root): string
     {
         return $root . 's';
     }

@@ -112,7 +112,7 @@ class ColumnMap
      *
      * @return string A String with the full column name.
      */
-    public function getFullyQualifiedName()
+    public function getFullyQualifiedName(): string
     {
         return $this->getTableName() . "." . $this->columnName;
     }
@@ -176,7 +176,7 @@ class ColumnMap
      *
      * @return boolean
      */
-    public function isLob()
+    public function isLob(): bool
     {
         return ($this->type == PropelColumnTypes::BLOB || $this->type == PropelColumnTypes::VARBINARY || $this->type == PropelColumnTypes::LONGVARBINARY);
     }
@@ -187,7 +187,7 @@ class ColumnMap
      * @return boolean
      * @since      1.3
      */
-    public function isTemporal()
+    public function isTemporal(): bool
     {
         return ($this->type == PropelColumnTypes::TIMESTAMP || $this->type == PropelColumnTypes::DATE || $this->type == PropelColumnTypes::TIME || $this->type == PropelColumnTypes::BU_DATE || $this->type == PropelColumnTypes::BU_TIMESTAMP);
     }
@@ -201,7 +201,7 @@ class ColumnMap
      * @return boolean
      * @deprecated Propel supports non-epoch dates
      */
-    public function isEpochTemporal()
+    public function isEpochTemporal(): bool
     {
         return ($this->type == PropelColumnTypes::TIMESTAMP || $this->type == PropelColumnTypes::DATE || $this->type == PropelColumnTypes::TIME);
     }
@@ -211,7 +211,7 @@ class ColumnMap
      *
      * @return boolean
      */
-    public function isNumeric()
+    public function isNumeric(): bool
     {
         return ($this->type == PropelColumnTypes::NUMERIC || $this->type == PropelColumnTypes::DECIMAL || $this->type == PropelColumnTypes::TINYINT || $this->type == PropelColumnTypes::SMALLINT || $this->type == PropelColumnTypes::INTEGER || $this->type == PropelColumnTypes::BIGINT || $this->type == PropelColumnTypes::REAL || $this->type == PropelColumnTypes::FLOAT || $this->type == PropelColumnTypes::DOUBLE);
     }
@@ -221,7 +221,7 @@ class ColumnMap
      *
      * @return boolean
      */
-    public function isInteger()
+    public function isInteger(): bool
     {
         return $this->getPdoType() === PDO::PARAM_INT;
     }
@@ -231,7 +231,7 @@ class ColumnMap
      *
      * @return boolean
      */
-    public function isText()
+    public function isText(): bool
     {
         return ($this->type == PropelColumnTypes::VARCHAR || $this->type == PropelColumnTypes::LONGVARCHAR || $this->type == PropelColumnTypes::CHAR);
     }
@@ -297,7 +297,7 @@ class ColumnMap
      *
      * @return boolean True if column may not be null.
      */
-    public function isNotNull()
+    public function isNotNull(): bool
     {
         return ($this->notNull || $this->isPrimaryKey());
     }
@@ -348,7 +348,7 @@ class ColumnMap
      *
      * @return boolean True if column is a foreign key.
      */
-    public function isForeignKey()
+    public function isForeignKey(): bool
     {
         if ($this->relatedTableName) {
             return true;
@@ -381,7 +381,7 @@ class ColumnMap
      *
      * @return string A String with the full name for the related column.
      */
-    public function getRelatedName()
+    public function getRelatedName(): string
     {
         return $this->relatedTableName . "." . $this->relatedColumnName;
     }
@@ -437,7 +437,7 @@ class ColumnMap
         $this->validators[] = $validator;
     }
 
-    public function hasValidators()
+    public function hasValidators(): bool
     {
         return count($this->validators) > 0;
     }
@@ -467,7 +467,7 @@ class ColumnMap
         return $this->valueSet;
     }
 
-    public function isInValueSet($value)
+    public function isInValueSet($value): bool
     {
         return in_array($value, $this->valueSet);
     }

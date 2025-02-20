@@ -472,7 +472,7 @@ class PHP5ObjectNoCollectionBuilder extends PHP5ObjectBuilder
      *
      * @return string
      */
-    protected function getRefFKLastCriteriaVarName(ForeignKey $fk)
+    protected function getRefFKLastCriteriaVarName(ForeignKey $fk): string
     {
         return 'last' . $this->getRefFKPhpNameAffix($fk, $plural = false) . 'Criteria';
     }

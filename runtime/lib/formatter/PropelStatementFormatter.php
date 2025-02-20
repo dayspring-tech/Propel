@@ -37,7 +37,7 @@ class PropelStatementFormatter extends PropelFormatter
         throw new PropelException('The Statement formatter cannot transform a record into a statement');
     }
 
-    public function isObjectFormatter()
+    public function isObjectFormatter(): bool
     {
         return false;
     }

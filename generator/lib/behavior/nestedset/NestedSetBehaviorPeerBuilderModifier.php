@@ -35,7 +35,7 @@ class NestedSetBehaviorPeerBuilderModifier
         return $this->behavior->getColumnForParameter($name);
     }
 
-    protected function getColumnAttribute($name)
+    protected function getColumnAttribute($name): string
     {
         return strtolower($this->getColumn($name)->getName());
     }
@@ -57,7 +57,7 @@ class NestedSetBehaviorPeerBuilderModifier
         $this->peerClassname = $builder->getStubPeerBuilder()->getClassname();
     }
 
-    public function staticAttributes($builder)
+    public function staticAttributes($builder): string
     {
         $tableName = $this->table->getName();
 

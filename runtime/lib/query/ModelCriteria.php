@@ -2238,7 +2238,7 @@ class ModelCriteria extends Criteria
         // Maybe it's a magic call to one of the methods supporting it, e.g. 'findByTitle'
         static $methods = array('findBy', 'findOneBy', 'filterBy', 'orderBy', 'groupBy');
         foreach ($methods as $method) {
-            if (strpos($name, $method) === 0) {
+            if (strpos($name, (string) $method) === 0) {
                 $columns = substr($name, strlen($method));
                 if (in_array($method, array('findBy', 'findOneBy')) && strpos($columns, 'And') !== false) {
                     $method = $method . 'Array';

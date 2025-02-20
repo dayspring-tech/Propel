@@ -107,7 +107,7 @@ class DatabaseMap
      *
      * @return boolean True if the database contains the table.
      */
-    public function hasTable($name)
+    public function hasTable($name): bool
     {
         return array_key_exists($name, $this->tables);
     }

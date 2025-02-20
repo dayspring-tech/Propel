@@ -54,7 +54,7 @@ class SortableBehaviorPeerBuilderModifier
         return $this->behavior->getParameter($key);
     }
 
-    protected function getColumnAttribute($name)
+    protected function getColumnAttribute($name): string
     {
         return strtolower($this->behavior->getColumnForParameter($name)->getName());
     }
@@ -80,7 +80,7 @@ class SortableBehaviorPeerBuilderModifier
         $builder->declareClassFromBuilder($builder->getStubQueryBuilder());
     }
 
-    public function staticAttributes($builder)
+    public function staticAttributes($builder): string
     {
         $tableName = $this->table->getName();
         $script = "

@@ -61,7 +61,7 @@ class PgsqlDataSQLBuilder extends DataSQLBuilder
         return $sql;
     }
 
-    public function getTableEndSql()
+    public function getTableEndSql(): string
     {
         $table = $this->getTable();
         $sql = "";
@@ -81,7 +81,7 @@ class PgsqlDataSQLBuilder extends DataSQLBuilder
      *
      * @return string The representation of boolean for Postgres ('t' or 'f').
      */
-    protected function getBooleanSql($value)
+    protected function getBooleanSql($value): string
     {
         if ($value === 'f' || $value === 'false' || $value === "0") {
             $value = false;
@@ -96,7 +96,7 @@ class PgsqlDataSQLBuilder extends DataSQLBuilder
      *
      * @return string
      */
-    protected function getBlobSql($blob)
+    protected function getBlobSql($blob): string
     {
         // they took magic __toString() out of PHP5.0.0; this sucks
         if (is_object($blob)) {

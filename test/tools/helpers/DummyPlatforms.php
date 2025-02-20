@@ -2,10 +2,10 @@
 
 class SchemaPlatform
 {
-    public function supportsSchemas() {return true;}
+    public function supportsSchemas(): bool {return true;}
 }
 
 class NoSchemaPlatform
 {
-    public function supportsSchemas() {return false;}
+    public function supportsSchemas(): bool {return false;}
 }

@@ -52,7 +52,7 @@ class DBOracle extends DBAdapter
      *
      * @return string The upper case string.
      */
-    public function toUpperCase($in)
+    public function toUpperCase($in): string
     {
         return "UPPER(" . $in . ")";
     }
@@ -64,7 +64,7 @@ class DBOracle extends DBAdapter
      *
      * @return string The string in a case that can be ignored.
      */
-    public function ignoreCase($in)
+    public function ignoreCase($in): string
     {
         return "UPPER(" . $in . ")";
     }
@@ -77,7 +77,7 @@ class DBOracle extends DBAdapter
      *
      * @return string
      */
-    public function concatString($s1, $s2)
+    public function concatString($s1, $s2): string
     {
         return "CONCAT($s1, $s2)";
     }
@@ -91,7 +91,7 @@ class DBOracle extends DBAdapter
      *
      * @return string
      */
-    public function subString($s, $pos, $len)
+    public function subString($s, $pos, $len): string
     {
         return "SUBSTR($s, $pos, $len)";
     }
@@ -103,7 +103,7 @@ class DBOracle extends DBAdapter
      *
      * @return string
      */
-    public function strLength($s)
+    public function strLength($s): string
     {
         return "LENGTH($s)";
     }
@@ -140,7 +140,7 @@ class DBOracle extends DBAdapter
     /**
      * @return int
      */
-    protected function getIdMethod()
+    protected function getIdMethod(): int
     {
         return DBAdapter::ID_METHOD_SEQUENCE;
     }
@@ -169,7 +169,7 @@ class DBOracle extends DBAdapter
      *
      * @return string
      */
-    public function random($seed = null)
+    public function random($seed = null): string
     {
         return 'dbms_random.value';
     }
@@ -227,7 +227,7 @@ class DBOracle extends DBAdapter
      *
      * @return boolean
      */
-    public function bindValue(PDOStatement $stmt, $parameter, $value, ColumnMap $cMap, $position = null)
+    public function bindValue(PDOStatement $stmt, $parameter, $value, ColumnMap $cMap, $position = null): bool
     {
         if ($cMap->isTemporal()) {
             $value = $this->formatTemporalValue($value, $cMap);
@@ -288,7 +288,7 @@ class DBOracle extends DBAdapter
      *
      * @return string
      */
-    public function getExplainPlanQuery($query, $uniqueId)
+    public function getExplainPlanQuery($query, $uniqueId): string
     {
         return sprintf('EXPLAIN PLAN SET STATEMENT_ID = \'%s\' FOR %s', $uniqueId, $query);
     }
@@ -300,7 +300,7 @@ class DBOracle extends DBAdapter
      *
      * @return string query unique id
      */
-    public function getExplainPlanReadQuery($uniqueId)
+    public function getExplainPlanReadQuery($uniqueId): string
     {
         return sprintf('SELECT LEVEL, OPERATION, OPTIONS, COST, CARDINALITY, BYTES
 FROM PLAN_TABLE CONNECT BY PRIOR ID = PARENT_ID AND PRIOR STATEMENT_ID = STATEMENT_ID

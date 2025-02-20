@@ -235,7 +235,7 @@ class PropelMigrationManager
         return $migrationTimestamps;
     }
 
-    public function hasPendingMigrations()
+    public function hasPendingMigrations(): bool
     {
         return array() !== $this->getValidMigrationTimestamps();
     }
@@ -267,7 +267,7 @@ class PropelMigrationManager
         return $this->getOldestDatabaseVersion();
     }
 
-    public static function getMigrationClassName($timestamp)
+    public static function getMigrationClassName($timestamp): string
     {
         return sprintf('PropelMigration_%d', $timestamp);
     }
@@ -283,7 +283,7 @@ class PropelMigrationManager
         return new $className();
     }
 
-    public function getMigrationClassBody($migrationsUp, $migrationsDown, $timestamp)
+    public function getMigrationClassBody($migrationsUp, $migrationsDown, $timestamp): string
     {
         $timeInWords = date('Y-m-d H:i:s', $timestamp);
         $migrationAuthor = ($author = $this->getUser()) ? 'by ' . $author : '';
@@ -349,7 +349,7 @@ EOP;
         return $migrationClassBody;
     }
 
-    public static function getMigrationFileName($timestamp)
+    public static function getMigrationFileName($timestamp): string
     {
         return sprintf('%s.php', self::getMigrationClassName($timestamp));
     }

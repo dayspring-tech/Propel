@@ -160,7 +160,7 @@ class AppData
      *
      * @return boolean True if the application has multiple databases
      */
-    public function hasMultipleDatabases()
+    public function hasMultipleDatabases(): bool
     {
         return (count($this->dbList) > 1);
     }
@@ -202,7 +202,7 @@ class AppData
      *
      * @return boolean
      */
-    public function hasDatabase($name)
+    public function hasDatabase($name): bool
     {
         foreach ($this->dbList as $db) {
             if ($db->getName() === $name) {
@@ -316,7 +316,7 @@ class AppData
      *
      * @return string Representation in xml format
      */
-    public function toString()
+    public function toString(): string
     {
         $result = "<app-data>\n";
         foreach ($this->dbList as $dbList) {

@@ -625,7 +625,7 @@ class BasePeer
      * This is implemented in a service class rather than in Criteria itself
      * in order to avoid doing the tests when it's not necessary (e.g. for SELECTs)
      */
-    public static function needsSelectAliases(Criteria $criteria)
+    public static function needsSelectAliases(Criteria $criteria): bool
     {
         $columnNames = array();
         foreach ($criteria->getSelectColumns() as $fullyQualifiedColumnName) {

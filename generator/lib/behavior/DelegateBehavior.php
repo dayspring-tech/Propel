@@ -92,7 +92,7 @@ class DelegateBehavior extends Behavior
         return $this->getTable()->getDatabase()->getTable($delegateTableName);
     }
 
-    public function objectCall($builder)
+    public function objectCall($builder): string
     {
         $script = '';
         foreach ($this->delegates as $delegate => $type) {

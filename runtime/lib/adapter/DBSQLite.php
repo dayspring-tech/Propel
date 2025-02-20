@@ -38,7 +38,7 @@ class DBSQLite extends DBAdapter
      *
      * @return string The upper case string.
      */
-    public function toUpperCase($in)
+    public function toUpperCase($in): string
     {
         return 'UPPER(' . $in . ')';
     }
@@ -50,7 +50,7 @@ class DBSQLite extends DBAdapter
      *
      * @return string The string in a case that can be ignored.
      */
-    public function ignoreCase($in)
+    public function ignoreCase($in): string
     {
         return 'UPPER(' . $in . ')';
     }
@@ -63,7 +63,7 @@ class DBSQLite extends DBAdapter
      *
      * @return string
      */
-    public function concatString($s1, $s2)
+    public function concatString($s1, $s2): string
     {
         return "($s1 || $s2)";
     }
@@ -77,7 +77,7 @@ class DBSQLite extends DBAdapter
      *
      * @return string
      */
-    public function subString($s, $pos, $len)
+    public function subString($s, $pos, $len): string
     {
         return "substr($s, $pos, $len)";
     }
@@ -89,7 +89,7 @@ class DBSQLite extends DBAdapter
      *
      * @return string
      */
-    public function strLength($s)
+    public function strLength($s): string
     {
         return "length($s)";
     }
@@ -101,7 +101,7 @@ class DBSQLite extends DBAdapter
      *
      * @return string
      */
-    public function quoteIdentifier($text)
+    public function quoteIdentifier($text): string
     {
         return '[' . $text . ']';
     }
@@ -127,7 +127,7 @@ class DBSQLite extends DBAdapter
      *
      * @return string
      */
-    public function random($seed = null)
+    public function random($seed = null): string
     {
         return 'random()';
     }

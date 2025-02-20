@@ -74,7 +74,7 @@ class PropelOMTask extends AbstractPropelDataModelTask
      * @todo       -cPropelOMTask Consider refactoring build() method into AbstractPropelDataModelTask (would need to be more generic).
      * @return int
      */
-    protected function build(OMBuilder $builder, $overwrite = true)
+    protected function build(OMBuilder $builder, $overwrite = true): int
     {
         $path = $builder->getClassFilePath();
         $this->ensureDirExists(dirname($path));

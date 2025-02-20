@@ -84,7 +84,7 @@ class PropelSQLParser
      *
      * @return integer the number of executed statements
      */
-    protected static function executeStatements($statements, $connection)
+    protected static function executeStatements($statements, $connection): int
     {
         foreach ($statements as $statement) {
             $stmt = $connection->prepare($statement);
@@ -199,7 +199,7 @@ class PropelSQLParser
      *
      * @return string A SQL statement
      */
-    public function getNextStatement()
+    public function getNextStatement(): string
     {
         $isAfterBackslash = false;
         $isInString = false;

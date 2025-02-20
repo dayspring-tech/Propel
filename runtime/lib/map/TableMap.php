@@ -790,7 +790,7 @@ class TableMap
             return false;
         }
 
-        return (strpos($data, $this->prefix) === 0);
+        return (strpos($data, (string) $this->prefix) === 0);
     }
 
     /**
@@ -819,7 +819,7 @@ class TableMap
      *
      * @return string A String with data processed.
      */
-    final public function removeUnderScores($data)
+    final public function removeUnderScores($data): string
     {
         $out = '';
         $tmp = $this->removePrefix($data);
@@ -841,7 +841,7 @@ class TableMap
      *
      * @return string A String with data processed.
      */
-    private function firstLetterCaps($data)
+    private function firstLetterCaps($data): string
     {
         return (ucfirst(strtolower($data)));
     }

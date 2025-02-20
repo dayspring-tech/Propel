@@ -28,7 +28,7 @@ class Unique extends Index
     /**
      * Returns <code>true</code>.
      */
-    public function isUnique()
+    public function isUnique(): bool
     {
         return true;
     }

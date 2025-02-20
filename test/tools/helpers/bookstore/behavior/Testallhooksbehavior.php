@@ -70,62 +70,62 @@ class TestAllHooksTableModifier
 
 class TestAllHooksObjectBuilderModifier
 {
-  public function objectAttributes($builder)
+  public function objectAttributes($builder): string
   {
     return 'public $customAttribute = 1;';
   }
 
-  public function preSave($builder)
+  public function preSave($builder): string
   {
     return '$this->preSave = 1;$this->preSaveIsAfterSave = isset($affectedRows);$this->preSaveBuilder="' . get_class($builder) . '";';
   }
 
-  public function postSave($builder)
+  public function postSave($builder): string
   {
     return '$this->postSave = 1;$this->postSaveIsAfterSave = isset($affectedRows);$this->postSaveBuilder="' . get_class($builder) . '";';
   }
 
-  public function preInsert($builder)
+  public function preInsert($builder): string
   {
     return '$this->preInsert = 1;$this->preInsertIsAfterSave = isset($affectedRows);$this->preInsertBuilder="' . get_class($builder) . '";';
   }
 
-  public function postInsert($builder)
+  public function postInsert($builder): string
   {
     return '$this->postInsert = 1;$this->postInsertIsAfterSave = isset($affectedRows);$this->postInsertBuilder="' . get_class($builder) . '";';
   }
 
-  public function preUpdate($builder)
+  public function preUpdate($builder): string
   {
     return '$this->preUpdate = 1;$this->preUpdateIsAfterSave = isset($affectedRows);$this->preUpdateBuilder="' . get_class($builder) . '";';
   }
 
-  public function postUpdate($builder)
+  public function postUpdate($builder): string
   {
     return '$this->postUpdate = 1;$this->postUpdateIsAfterSave = isset($affectedRows);$this->postUpdateBuilder="' . get_class($builder) . '";';
   }
 
-  public function preDelete($builder)
+  public function preDelete($builder): string
   {
     return '$this->preDelete = 1;$this->preDeleteIsBeforeDelete = isset(Table3Peer::$instances[$this->id]);$this->preDeleteBuilder="' . get_class($builder) . '";';
   }
 
-  public function postDelete($builder)
+  public function postDelete($builder): string
   {
     return '$this->postDelete = 1;$this->postDeleteIsBeforeDelete = isset(Table3Peer::$instances[$this->id]);$this->postDeleteBuilder="' . get_class($builder) . '";';
   }
 
-  public function postHydrate($builder)
+  public function postHydrate($builder): string
   {
     return '$this->postHydrate = 1;$this->postHydrateIsAfterHydrate = isset($this->id);$this->postHydrateBuilder="' . get_class($builder) . '";';
   }
 
-  public function objectMethods($builder)
+  public function objectMethods($builder): string
   {
     return 'public function hello() { return "' . get_class($builder) .'"; }';
   }
 
-  public function objectCall($builder)
+  public function objectCall($builder): string
   {
       return 'if ($name == "foo") return "bar";';
   }
@@ -138,17 +138,17 @@ class TestAllHooksObjectBuilderModifier
 
 class TestAllHooksPeerBuilderModifier
 {
-  public function staticAttributes($builder)
+  public function staticAttributes($builder): string
   {
     return 'public static $customStaticAttribute = 1;public static $staticAttributeBuilder = "' . get_class($builder) . '";';
   }
 
-  public function staticMethods($builder)
+  public function staticMethods($builder): string
   {
     return 'public static function hello() { return "' . get_class($builder) . '"; }';
   }
 
-  public function preSelect($builder)
+  public function preSelect($builder): string
   {
     return '$con->preSelect = "' . get_class($builder) . '";';
   }
@@ -161,27 +161,27 @@ class TestAllHooksPeerBuilderModifier
 
 class TestAllHooksQueryBuilderModifier
 {
-    public function preSelectQuery($builder)
+    public function preSelectQuery($builder): string
     {
         return '// foo';
     }
 
-    public function preDeleteQuery($builder)
+    public function preDeleteQuery($builder): string
     {
         return '// foo';
     }
 
-    public function postDeleteQuery($builder)
+    public function postDeleteQuery($builder): string
     {
         return '// foo';
     }
 
-    public function preUpdateQuery($builder)
+    public function preUpdateQuery($builder): string
     {
         return '// foo';
     }
 
-    public function postUpdateQuery($builder)
+    public function postUpdateQuery($builder): string
     {
         return '// foo';
     }

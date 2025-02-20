@@ -57,7 +57,7 @@ class AggregateColumnBehavior extends Behavior
         }
     }
 
-    public function objectMethods($builder)
+    public function objectMethods($builder): string
     {
         if (!$foreignTableName = $this->getParameter('foreign_table')) {
             throw new InvalidArgumentException(sprintf('You must define a \'foreign_table\' parameter for the \'aggregate_column\' behavior in the \'%s\' table', $this->getTable()->getName()));

@@ -108,7 +108,7 @@ class ForeignKey extends XMLElement
     /**
      * normalizes the input of onDelete, onUpdate attributes
      */
-    public function normalizeFKey($attrib)
+    public function normalizeFKey($attrib): string
     {
         if ($attrib === null || strtoupper($attrib) == "NONE") {
             $attrib = self::NONE;
@@ -124,7 +124,7 @@ class ForeignKey extends XMLElement
     /**
      * returns whether or not the onUpdate attribute is set
      */
-    public function hasOnUpdate()
+    public function hasOnUpdate(): bool
     {
         $database = $this->getTable()->getDatabase();
         if($database instanceof Database &&
@@ -138,7 +138,7 @@ class ForeignKey extends XMLElement
     /**
      * returns whether or not the onDelete attribute is set
      */
-    public function hasOnDelete()
+    public function hasOnDelete(): bool
     {
         $database = $this->getTable()->getDatabase();
         if($database instanceof Database &&
@@ -573,7 +573,7 @@ class ForeignKey extends XMLElement
      *
      * @return boolean
      */
-    public function isLocalColumnsRequired()
+    public function isLocalColumnsRequired(): bool
     {
         foreach ($this->getLocalColumns() as $columnName) {
             if (!$this->getTable()->getColumn($columnName)->isNotNull()) {
@@ -589,7 +589,7 @@ class ForeignKey extends XMLElement
      *
      * @return boolean Returns true if all columns inside this foreign key are primary keys of the foreign table
      */
-    public function isForeignPrimaryKey()
+    public function isForeignPrimaryKey(): bool
     {
         $lfmap = $this->getLocalForeignMapping();
         $foreignTable = $this->getForeignTable();
@@ -612,7 +612,7 @@ class ForeignKey extends XMLElement
      *
      * @return boolean True if there is at least one column that is a primary key of the foreign table
      */
-    public function isAtLeastOneForeignPrimaryKey()
+    public function isAtLeastOneForeignPrimaryKey(): bool
     {
         $cols = $this->getForeignPrimaryKeys();
 
@@ -650,7 +650,7 @@ class ForeignKey extends XMLElement
      *
      * @return Boolean
      */
-    public function isComposite()
+    public function isComposite(): bool
     {
         return count($this->getLocalColumns()) > 1;
     }
@@ -660,7 +660,7 @@ class ForeignKey extends XMLElement
      *
      * @return boolean True if all local columns are at the same time a primary key
      */
-    public function isLocalPrimaryKey()
+    public function isLocalPrimaryKey(): bool
     {
         $localCols = $this->getLocalColumns();
 
@@ -679,7 +679,7 @@ class ForeignKey extends XMLElement
      *
      * @return boolean True if there is at least one column that is a primary key
      */
-    public function isAtLeastOneLocalPrimaryKey()
+    public function isAtLeastOneLocalPrimaryKey(): bool
     {
         $localCols = $this->getLocalColumnObjects();
 
@@ -724,7 +724,7 @@ class ForeignKey extends XMLElement
      * @return boolean
      * @link       http://propel.phpdb.org/trac/ticket/549
      */
-    public function isMatchedByInverseFK()
+    public function isMatchedByInverseFK(): bool
     {
         return (bool) $this->getInverseFK();
     }
